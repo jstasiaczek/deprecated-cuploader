@@ -18,7 +18,7 @@ Some features:
 Installation
 ------
 
-* Download copy of repository.
+* Download latest tag.
 * Put it in TinyMCE plugin directory, it should be named cuploader.
 * Add it to TinyMCE configuration:
 
