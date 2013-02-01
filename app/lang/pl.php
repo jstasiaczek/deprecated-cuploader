@@ -1,0 +1,68 @@
+<?php
+/*Copyright (C) 2012 Jarosław Stasiaczek
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+ * and associated documentation files (the "Software"), to deal in the Software without restriction, 
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute, 
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is 
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE 
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+return Array(
+	'back' => 'Wróć',
+	'upload' => 'Wgraj plik',
+	'upload_many' => 'Wgraj pliki',
+	'more' => 'więcej plików...',
+	'home' => 'Początek',
+	'error_system' => "Plik nie może zostać wgrany z powodu błędu systemu.",
+	'error_size' => "Plik ma zbyt duży rozmiar.",
+	'error_ok' => "Plik wgrany poprawnie!",
+	'error_type' => "Typ pliku nie jest poprawny.",
+	'error_unknown' => "Plik nie jest poprawny lub jest zbyt duży!",
+	'insert_this' => 'Wstaw tą miniaturkę',
+	'insert' => 'Wstaw miniaturkę',
+	'insert_oryginal' => 'Wstaw w oryginalnym rozmiarze',
+	'close' => 'zamknij',
+	'add_file' => 'Dodaj kolejny plik...',
+	'delete' => 'Usuń',
+	'edit_current_dir' => 'Edytuj bierzący katalog',
+	'dir_add' => 'Dodaj nowy',
+	'dir_edit' => 'Zmień nazwę',
+	'dir_delete' => 'Usuń bierzący',
+	'save' => 'Zapisz',
+	'confirm_delete' => 'Czy jesteś pewnien, że chcesz usunąć ten plik?',
+	'file_exists_warning' => 'Plik o tej nazwie już istnieje,<br /> nazwa została zmieniona na: ',
+	'thumb_small' => 'M.',
+	'width' => 'Szerokość',
+	'height' => 'Wysokość',
+	'size' => 'Rozmiar',
+	'name' => 'Nazwa',
+	'dimensions' => 'Wymiary',
+	'cant_perform_any_forlder_action' => 'Wygląda na to, że nie możesz tu nic zrobić.',
+	'rename_dir_warning' => 'Zmiana nazwy nie pustego katalogu może spowodować, <br />że obrazy przestaną byś wyświetlane.',
+	'list_view' => 'Widok listy',
+	'grid_view' => 'Widok siatki',
+	'about_link' => 'O wtyczce',
+	'folder_actions' => 'Opcje',
+	'uploading' => 'Wysyłanie',
+	'upload_info' => 'Informacje',
+	'empty' => 'brak pliku',
+	'about_text' => '<strong>Witaj we wtyczce CiapUploader.</strong><br />
+	Używasz wersji: 2.0<br />
+	Data wydania: 01/30/2013<br />
+	Strona projektu: http://code.google.com/p/ciap-uploader/<br />
+	<br />
+	Stworzone przez: Jarosław Stasiaczek<br />
+	Strona autora: http://phpweb.p<br />',
+	'' => '',
+	'' => '',
+);
+?>

@@ -1,0 +1,158 @@
+/* 
+    Document   : uploader
+    Created on : 2012-12-08, 22:10:58
+    Author     : Administrator
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+a, abbr, address, article, aside, audio, b, blockquote, body, canvas, 
+caption, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset,
+figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup,
+html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, 
+object, ol, p, pre, q, samp, section, small, span, strong, sub, summary, 
+sup, table, tbody, td, tfoot, th, thead, time, tr, ul, var, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: inherit;
+  font-style: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, canvas, details, figcaption, figure, footer, header, 
+hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+mark {
+  background-color: transparent;
+}
+
+a, ins, del {
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+caption, th {
+  text-align: left;
+}
+
+q:after, q:before {
+  content: "";
+}
+/* RESET CSS END ==================================================*/
+
+
+
+p,body {
+	font-family:  Arial, Helvetica;
+	font-weight:normal;
+	font-size: 14px;
+
+}
+
+.container a.brand, .container ul.breadcrumb, .navbar .navbar-inner div.container{
+	line-height: 20px;
+}
+
+.ciap-modal{
+	top: 260px;
+	
+}
+
+th,td,a,li,div{
+	font-family:  Arial, Helvetica;
+	font-size: 14px;
+	font-weight:normal;
+}
+
+.container{
+	width: 97% !important;
+	margin: 5px auto 0 auto;
+}
+
+form{
+	margin-bottom: 5px !important;
+}
+
+#view-info-drop{
+	width: 30px;
+}
+#view-info-drop li{
+	width: 20px;
+}
+#view-info-drop li a{
+	width: 20px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.span1_75{
+	width: 75px;
+	height: 75px;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-bottom: 5px;
+}
+.span1_75n{
+	width: 75px;
+	font-size: 11px;
+}
+
+div.square_img span.success{
+	background-color: green;
+}
+div.square_img .info{
+	background-color: black;
+	font-weight: bold;
+	color: white;
+	font-size: 10px;
+	padding: 3px;
+	margin-top: 50px;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* ie8 supports both; this variant doesn't work if meta tag below used */
+	filter:alpha(opacity=75); /* for internet explorer <= 7, and 8 when <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> */
+	-moz-opacity:0.75; /* for older gecko browsers */
+	-khtml-opacity: 0.75; /* for older webkit browsers */
+	opacity: 0.75; /* CSS3 standard */
+}
+
+div.image-element{
+	cursor: pointer;
+}
+
+.span410px{
+	width: 410px;
+}
+
+#errors .alert-smaller{
+	padding: 3px 35px 3px 14px;
+	margin-bottom: 5px;
+}
+
+.nav-list li, .nav-list li a
+{
+	word-break: break-all;
+	font-size: 12px;
+}
+
+ul.nav-list ul{
+	padding-right: 0;
+}
+ul.nav-list li.divider{
+	margin: 3px 1px;
+}
+
+ul.nav-list > li > a {
+padding: 1px 1px;
+}
+
