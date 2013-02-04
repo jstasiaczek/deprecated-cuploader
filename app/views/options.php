@@ -28,8 +28,10 @@
 			<hr />
 			<?php echo $this->image_size[0] ?><strong>x</strong><?php echo $this->image_size[1] ?> px<br />
 			<?php echo $this->file_size ?><br />
+			<?php if(Config_Secure::can_delete_file()): ?>
 			<hr />
 			<button type="button" onclick="return delete_image('<?php echo Ciap_Lang::t('confirm_delete'); ?>');" class="btn btn-danger btn-mini">Delete</button>
+			<?php endif; ?>
 		</div>
 		<div class="span410px" style="height: 270px; overflow-y: auto;">
 			<ul class="nav nav-tabs nav-stacked">
