@@ -3,6 +3,7 @@ CUploader
 
 This is TinyMCE plugin written in PHP. 
 It is allowing users to manage their uploaded images and allow to upload new images.
+
 This software is released under the MIT License.
 
 Some features:
@@ -42,3 +43,5 @@ and edit
 * Now plugin should start working, it is highly recomended to edit also 
 <TinyMCE root dir>/plugin/cuploader/app/Config/Secure.php and extend can_access() method. You can also see
 <TinyMCE root dir>/plugin/cuploader/app/Config/Base/Secure.php for more methods.
+
+For more informations please read wiki: https://github.com/siidhighwind/cuploader/wiki
