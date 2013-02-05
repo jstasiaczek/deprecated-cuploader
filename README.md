@@ -3,6 +3,7 @@ CUploader
 
 This is TinyMCE plugin written in PHP. 
 It is allowing users to manage their uploaded images and allow to upload new images.
+This software is released under the MIT License.
 
 Some features:
 * Allow to upload file by AJAX.
