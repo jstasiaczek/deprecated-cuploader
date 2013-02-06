@@ -156,3 +156,32 @@ ul.nav-list > li > a {
 padding: 1px 1px;
 }
 
+.transparent_inp{
+	z-index: 3000; 
+	left: 140px; 
+	width: 38px; 
+	height: 30px; 
+	zoom: 1;
+	filter: alpha(opacity=0);
+	opacity: 0; 
+	position: absolute; 
+	overflow: hidden; 
+	display: block;
+}
+
+.transparent_inp input{
+	position: absolute !important;
+	right: 0px;
+	width: 38px !important;
+	cursor:pointer !important;
+}
+
+.extended_transparent_inp{
+	width: 45px;
+	height: 32px;
+}
+.extended_transparent_inp input{
+	width: 45px !important;
+	height: 32px !important;
+}
+

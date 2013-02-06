@@ -18,8 +18,8 @@
  */
 ?>
 
-<div class='form-inline span3' style="margin-bottom: 10px;">
-<span style="display: none;">
+<div class='form-inline span3' style="margin-bottom: 10px; position: relative;">
+<span class="transparent_inp extended_transparent_inp">
 	<input type="file" name="file<?php echo $this->field_postfix; ?>" id="fakeUploadInput_orgInput<?php echo $this->field_postfix; ?>" onchange="fakeInput_multi.renderPath($(this), $('#fakeUploadInput<?php echo $this->field_postfix; ?>'));"/>
 </span>
 <input class="span2 uneditable-input" id="fakeUploadInput<?php echo $this->field_postfix; ?>" disabled='disabled' type="text">

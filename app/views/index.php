@@ -39,6 +39,8 @@
 			urls.getFolderActions = '<?php echo Ciap_Url::create('folder_actions')->buildUrl(); ?>';
 			urls.getAbout = '<?php echo Ciap_Url::create('about')->buildUrl(); ?>';
 			parent.CUploaderDialog.setCurrentPath('<?php echo $this->current_dir ?>');
+			var uploader = new CUploader();
+			uploader.urls = urls;
 		</script>
     </head>
     <body>
@@ -86,7 +88,7 @@
 		<?php	$errors = $this->getValue('errors', false); 
 				if($errors):?>
 		<script type="text/javascript">
-			show_errors($.parseJSON('<?php echo json_encode($errors['errors']) ?>'),$.parseJSON('<?php echo json_encode($errors['warnings']) ?>'));
+			uploader.showErrors($.parseJSON('<?php echo json_encode($errors['errors']) ?>'),$.parseJSON('<?php echo json_encode($errors['warnings']) ?>'));
 		</script>
 		<?php	endif; ?>
     </body>

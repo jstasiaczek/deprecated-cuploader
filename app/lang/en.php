@@ -22,7 +22,7 @@ return Array(
 	'upload_many' => 'Upload files',
 	'more' => 'more files...',
 	'home' => 'Home',
-	'error_system' => "Can't upload file because of internal system error.",
+	'error_system' => "Can\'t upload file because of internal system error.",
 	'error_size' => "Can't upload, file is to big.",
 	'error_ok' => "File uploaded correct!",
 	'error_type' => "File type is incorrect.",
@@ -56,9 +56,9 @@ return Array(
 	'empty' => 'no file', 
 	'about_link' => 'About',
 	'about_text' => '<strong>Welcome to CiapUploader plugin.</strong><br />
-	You are using version: 2.0<br />
-	Release date: 01/30/2013<br />
-	Website: http://code.google.com/p/ciap-uploader/<br />
+	You are using version: '.Version::CURRENT.'<br />
+	Release date: '.date('m/d/Y', strtotime(Version::RELEASE_DATE)).'<br />
+	Website: https://github.com/siidhighwind/cuploader<br />
 	<br />
 	Created by: Jarosław Stasiaczek<br />
 	Author website: http://phpweb.pl<br />',

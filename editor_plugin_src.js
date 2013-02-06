@@ -35,7 +35,7 @@
 				ed.windowManager.open({
 					file : url + '/dialog.htm',
 					width : 810 + parseInt(ed.getLang('cuploader.delta_width', 0)),
-					height : 450 + parseInt(ed.getLang('cuploader.delta_height', 0)),
+					height : 500 + parseInt(ed.getLang('cuploader.delta_height', 0)),
 					inline : 1,
 					popup_css : false
 				}, {
@@ -82,7 +82,7 @@
 				longname : 'Ciap Uploader',
 				author : 'Jarosław Stasiaczek',
 				authorurl : 'http://phpweb.pl',
-				infourl : 'http://code.google.com/p/ciap-uploader/',
+				infourl : 'https://github.com/siidhighwind/cuploader',
 				version : "1.2"
 			};
 		}

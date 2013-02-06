@@ -34,8 +34,8 @@
 			window['current_upload_many_iter'] = <?php echo $i; ?>;
 		</script>
 		<div class='form-inline span3' style="margin-bottom: 10px;">
-			<button class="btn" onclick="more_files('<?php echo $this->current_dir ?>', this)" type="button"><span class="icon-plus"></span></button>
-			<button class="btn" onclick="uploadManyFiles(); return false;" type="button"><span class="icon-upload"></span></button>
+			<button class="btn" onclick="uploader.moreFiles('<?php echo $this->current_dir ?>', this)" type="button"><span class="icon-plus"></span></button>
+			<button class="btn" onclick="uploader.uploadManyFiles(); return false;" type="button"><span class="icon-upload"></span></button>
 		</div>
 	</form>
 </div>

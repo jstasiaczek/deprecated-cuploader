@@ -9,7 +9,7 @@
 						<a class="brand" href="<?php echo Ciap_Url::create('index')->buildUrl() ?>">Cuploader</a>
 						<div class="nav-collapse collapse navbar-responsive-collapse">
 							<ul class="nav">
-								<li><a href="#" onclick="get_folder_actions('<?php echo $this->current_dir; ?>'); return false;"><i class="icon-wrench"></i></a></li>
+								<li><a href="#" onclick="uploader.getFolderActions('<?php echo $this->current_dir; ?>'); return false;"><i class="icon-wrench"></i></a></li>
 								<li>
 									<span class="icon-bar"></span>
 								</li>
@@ -30,7 +30,7 @@
 										<li><a onclick="parent.CUploaderDialog.setViewType('grid');" href="<?php echo Ciap_Url::create('index', Array('type' => 'grid', 'path' => $this->current_dir))->buildUrl() ?>"><i class="icon-th"></i> <?php echo Ciap_Lang::t('grid_view') ?></a></li>
 										<li><a onclick="parent.CUploaderDialog.setViewType('list');" href="<?php echo Ciap_Url::create('index', Array('type' => 'list', 'path' => $this->current_dir))->buildUrl() ?>"><i class="icon-th-list"></i> <?php echo Ciap_Lang::t('list_view') ?></a></li>
 										<li class="divider"></li>
-										<li><a href="#" onclick="get_about(); return false;"><i class="icon-info-sign"></i> <?php echo Ciap_Lang::t('about_link') ?></a></li>
+										<li><a href="#" onclick="uploader.getAbout(); return false;"><i class="icon-info-sign"></i> <?php echo Ciap_Lang::t('about_link') ?></a></li>
 									</ul>
 								</li>
 							</ul>

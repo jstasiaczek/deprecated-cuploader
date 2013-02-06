@@ -27,294 +27,266 @@ function UrlsContainer(){
 }
 var urls = new UrlsContainer();
 
+function CUploader(){
+	this.urls = null;
+	this.moreFiles = function(path,sender){
+		window['current_upload_many_iter'] += 1;
+		$.ajax({
+			type: "GET",
+			url: this.urls.moreFiles+'&path='+path+'&iter='+window['current_upload_many_iter']
+		  }).done(function( msg ) {
+			$(sender).parent().before(msg);
+		  });
+	};
 
-var more_files = function(path,sender){
-	window['current_upload_many_iter'] += 1;
-	$.ajax({
-		type: "GET",
-		url: urls.moreFiles+'&path='+path+'&iter='+window['current_upload_many_iter']
-		//url: baseUrl+'/upload/?lang='+lang+'&path='+path+'&action=add_field'+'&iter='+window['current_upload_many_iter']
-	  }).done(function( msg ) {
-		$(sender).parent().before(msg);
-	  });
-}
+	this.uploadManyFiles = function()
+	{
+		$('#upload_many_dlg').modal('hide');
+		window.setTimeout('uploader.pleaseWait();', 50);
+		window.setTimeout('$(\'#upload_many_form\').submit();', 300);
+	}
 
-var set_overlay = function(){
-	var height = $(window).height();
-	if($('body').height() > height)
-		height = $('body').height();
-	$('#overlay').css('display', 'block').css('height', height+'px');
-}
+	this.getFolderActions = function(path){
+		$.post(this.urls.getFolderActions, {'path':path}, function(data){
+			$('#folder_actions').html(data).modal('show');
+		});
 
-var uploadManyFiles = function()
-{
-	$('#upload_many_dlg').modal('hide');
-	window.setTimeout('please_wait();', 50);
-	window.setTimeout('$(\'#upload_many_form\').submit();', 300);
-}
+	}
+	this.getAbout = function(){
+		$.post(this.urls.getAbout, function(data){
+			$('#about').html(data).modal('show');
+		});
 
-var close_overlay = function(){
-	$('#overlay').css('display', 'none');
-}
+	}
 
-var get_folder_actions = function(path){
-	$.post(urls.getFolderActions, {'path':path}, function(data){
-		$('#folder_actions').html(data).modal('show');
-	});
-	
-}
-var get_about = function(){
-	$.post(urls.getAbout, function(data){
-		$('#about').html(data).modal('show');
-	});
-	
-}
-
-var get_options = function(path){
+this.getOptions = function(path){
 	var file = path.substring(path.lastIndexOf('/')+1, path.length);
 	path = path.substring(0, path.lastIndexOf('/')+1);
 	$.post(urls.getOptions, {'file': file, 'path':path}, function(data){
 		$('#options').html(data).modal('show');
 	});
+	}
 	
-}
-
-var close_options = function()
-{
-	$('#options').css('display', 'none');
-	close_overlay();
-}
-var close_folder_actions = function()
-{
-	$('#folder_actions').css('display', 'none');
-	close_overlay();
-}
-var close_xhr_info = function()
-{
-	$('#xhr_info').modal('hide');
-}
-
-var upload_many_dialog = function(path)
-{
-	$.ajax({
-		type: "GET",
-		url: urls.uploadManyDialog+'&path='+path
-	  }).done(function( msg ) {
-		$('#upload_many_dlg').html(msg).modal('show');
-	  });
-}
-
-var show_errors = function(errors, warnings)
-{
-	var html = '';
-	if(errors != undefined)
+	this.uploadManyDialog = function(path)
 	{
-		html += show_errors_render_array(errors, 'alert-error');
+		$.ajax({
+			type: "GET",
+			url: this.urls.uploadManyDialog+'&path='+path
+		  }).done(function( msg ) {
+			$('#upload_many_dlg').html(msg).modal('show');
+		  });
 	}
-	if(warnings != undefined)
+
+
+this.showErrors = function(errors, warnings)
 	{
-		html += show_errors_render_array(warnings, '');
-	}
-	$('#errors .modal-body').html(html);
-	$('#errors').modal('show');
-}
-
-var show_errors_render_array = function(data, cssclass)
-{
-	var html = '';
-	var i = 0;
-	for(i;i < data.length; i++)
-	{
-		html += '<div class="alert alert-smaller '+cssclass+'"><strong>'+data[i].file+'</strong>: '+data[i].message+'</div>';
-	}
-	return html;
-}
-
-var validate_folder_name = function(field_id)
-{
-	var patt = /^[|a-zA-Z0-9_]*$/i;
-	var obj = $('#'+field_id);
-	if(patt.test(obj.val()) && obj.val() != '___cache')
-	{
-		return true;
-	}
-	else
-	{
-		obj.css('border-color', 'red');
-		return false;
-	}
-}
-
-var please_wait = function()
-{
-	$('#wait').modal({'backdrop': 'static', 'keyboard': false});
-	$('#wait').find('.bar').css('width', '100%');
-	$('#wait').find('span').html('');
-}
-var hide_wait = function()
-{
-	$('#wait').modal('hide');
-}
-
-var delete_image = function(message)
-{
-	if(confirm(message))
-	{
-		$('#delete_form').submit();
-		return false;
-	} 
-	else 
-	{
-		return false;
-	}
-}
-
-var createThumb = function(path_add, id, imageName)
-{
-	$.ajax({
-		url: urls.createThumb, 
-		async: false,
-		data: {'thumb_id': id, 'imageName':imageName, 'path_add': path_add}, 
-		type: 'POST',
-		success: function(data){
-			var json = $.parseJSON(data);
-			if(json.success)
-				parent.CUploaderDialog.insert(json.url, json.attributes[0],json.attributes[1], 'width: '+json.attributes[0]+'px; height: '+json.attributes[1]+'px;');
-			else
-				alert(json.error);
-	}});
-}
-
-
-
-// XHR upload part =========================================================================
-
-function supportAjaxUploadWithProgress() {
-  return supportFileAPI() && supportAjaxUploadProgressEvents() && supportFormData();
-
-  // Is the File API supported?
-  function supportFileAPI() {
-    var fi = document.createElement('INPUT');
-    fi.type = 'file';
-    return 'files' in fi;
-  };
-
-  // Are progress events supported?
-  function supportAjaxUploadProgressEvents() {
-    var xhr = new XMLHttpRequest();
-    return !! (xhr && ('upload' in xhr) && ('onprogress' in xhr.upload));
-  };
-
-  // Is FormData supported?
-  function supportFormData() {
-    return !! window.FormData;
-  }
-}
-
-
-
-function initCorrectUploader(forceNormal)
-{
-	if(forceNormal == undefined || forceNormal == null)
-		forceNormal = false;
-	if (!supportAjaxUploadWithProgress() || forceNormal) {
-		$('#normal-upload-button').css('display', 'inline');
-		$('#xhr-upload-button').css('display', 'none');
-	}
-	else
-	{
-		$('#normal-upload-button').css('display', 'none');
-		$('#xhr-upload-button').css('display', 'inline');
-	}
-}
-
-function uploadFileXHR(params)
-{
-	window['upload_file_counter'] = 0;
-	var formData = new FormData();
-
-    // Since this is the file only, we send it to a specific location
-    var action = urls.uploadFileXHR+params;
-
-    // FormData only has the file
-    var fileInput = document.getElementById('single-upload-file');
-    var file = fileInput.files[0];
-    formData.append('single-upload-file', file);
-
-    // Code common to both variants
-    sendXHRequest(formData, action);
-}
-
-// Once the FormData instance is ready and we know
-// where to send the data, the code is the same
-// for both variants of this technique
-function sendXHRequest(formData, uri) {
-  // Get an XMLHttpRequest instance
-  var xhr = new XMLHttpRequest();
-  // Set up events
-  xhr.upload.addEventListener('loadstart', onloadstartHandler, false);
-  xhr.upload.addEventListener('progress', onprogressHandler, false);
-  xhr.addEventListener('readystatechange', onreadystatechangeHandler, false);
-  window['file_rendered'] = false;
-  // Set up request
-  xhr.open('POST', uri, true);
-
-  // Fire!
-  xhr.send(formData);
-
-}
-
-// Handle the start of the transmission
-function onloadstartHandler(evt) {
-	please_wait();
-	$('#wait .bar').css('width', '0%');
-	$('#wait span').html('0%');
-}
-
-// Handle the progress
-function onprogressHandler(evt) {
-	var percent = evt.loaded/evt.total*100;
-	var val = Math.floor(percent) + '%';
-	$('#wait .bar').css('width', val);
-	$('#wait span').html(val);
-}
-
-// Handle the response from the server
-function onreadystatechangeHandler(evt) {
-	// hotfix for firefox 
-	if(window['file_rendered'] == true)
-		return;
-	var status = null;
-
-	try {
-		status = evt.target.status;
-	}
-	catch(e) {
-		return;
-	}
-	hide_wait();
-	if (status == '200' && evt.target.responseText.length > 0) {
-		var ret = evt.target.responseText;
-		var json = $.parseJSON(ret);
-		var item = null;
-		for(var i = 0; i < json.html.length; i++)
+		var html = '';
+		if(errors != undefined)
 		{
-			item = $(".image-element").first();
-			if(item.length > 0)
+			html += this.showErrorsRenderArray(errors, 'alert-error');
+		}
+		if(warnings != undefined)
+		{
+			html += this.showErrorsRenderArray(warnings, '');
+		}
+		$('#errors .modal-body').html(html);
+		$('#errors').modal('show');
+	}
+
+	this.showErrorsRenderArray = function(data, cssclass)
+	{
+		var html = '';
+		var i = 0;
+		for(i;i < data.length; i++)
+		{
+			html += '<div class="alert alert-smaller '+cssclass+'"><strong>'+data[i].file+'</strong>: '+data[i].message+'</div>';
+		}
+		return html;
+	}
+
+	this.validateFolderName = function(field_id)
+	{
+		var patt = /^[|a-zA-Z0-9_]*$/i;
+		var obj = $('#'+field_id);
+		if(patt.test(obj.val()) && obj.val() != '___cache')
+		{
+			return true;
+		}
+		else
+		{
+			obj.css('border-color', 'red');
+			return false;
+		}
+	}
+
+	this.pleaseWait = function()
+	{
+		$('#wait').modal({'backdrop': 'static', 'keyboard': false});
+		$('#wait').find('.bar').css('width', '100%');
+		$('#wait').find('span').html('');
+	}
+	
+	this.hideWait = function()
+	{
+		$('#wait').modal('hide');
+	}
+
+	this.deleteImage = function(message)
+	{
+		if(confirm(message))
+		{
+			$('#delete_form').submit();
+			return false;
+		} 
+		else 
+		{
+			return false;
+		}
+	}
+
+	this.createThumb = function(path_add, id, imageName)
+	{
+		$.ajax({
+			url: this.urls.createThumb, 
+			async: false,
+			data: {'thumb_id': id, 'imageName':imageName, 'path_add': path_add}, 
+			type: 'POST',
+			success: function(data){
+				var json = $.parseJSON(data);
+				if(json.success)
+					parent.CUploaderDialog.insert(json.url, json.attributes[0],json.attributes[1], 'width: '+json.attributes[0]+'px; height: '+json.attributes[1]+'px;');
+				else
+					alert(json.error);
+		}});
+	}
+
+	// XHR upload part =========================================================================
+
+	this.supportAjaxUploadWithProgress = function() {
+	  return supportFileAPI() && supportAjaxUploadProgressEvents() && supportFormData();
+
+	  // Is the File API supported?
+	  function supportFileAPI() {
+		var fi = document.createElement('INPUT');
+		fi.type = 'file';
+		return 'files' in fi;
+	  };
+
+	  // Are progress events supported?
+	  function supportAjaxUploadProgressEvents() {
+		var xhr = new XMLHttpRequest();
+		return !! (xhr && ('upload' in xhr) && ('onprogress' in xhr.upload));
+	  };
+
+	  // Is FormData supported?
+	  function supportFormData() {
+		return !! window.FormData;
+	  }
+	}
+	
+	this.initCorrectUploader = function(forceNormal)
+	{
+		if(forceNormal == undefined || forceNormal == null)
+			forceNormal = false;
+		if (!this.supportAjaxUploadWithProgress() || forceNormal) {
+			$('#normal-upload-button').css('display', 'inline');
+			$('#xhr-upload-button').css('display', 'none');
+		}
+		else
+		{
+			$('#normal-upload-button').css('display', 'none');
+			$('#xhr-upload-button').css('display', 'inline');
+		}
+	}
+
+	this.uploadFileXHR = function(params)
+	{
+		window['upload_file_counter'] = 0;
+		var formData = new FormData();
+
+		// Since this is the file only, we send it to a specific location
+		var action = urls.uploadFileXHR+params;
+
+		// FormData only has the file
+		var fileInput = document.getElementById('single-upload-file');
+		var file = fileInput.files[0];
+		formData.append('single-upload-file', file);
+
+		// Code common to both variants
+		this.sendXHRequest(formData, action);
+	}
+
+	// Once the FormData instance is ready and we know
+	// where to send the data, the code is the same
+	// for both variants of this technique
+	this.sendXHRequest = function(formData, uri) {
+		// Get an XMLHttpRequest instance
+		var xhr = new XMLHttpRequest();
+		// Set up events
+		xhr.upload.addEventListener('loadstart', this.onloadstartHandler, false);
+		xhr.upload.addEventListener('progress', this.onprogressHandler, false);
+		xhr.addEventListener('readystatechange', this.onreadystatechangeHandler, false);
+		window['file_rendered'] = false;
+		// Set up request
+		xhr.open('POST', uri, true);
+
+		// Fire!
+		xhr.send(formData);
+
+	}
+
+	// Handle the start of the transmission
+	this.onloadstartHandler = function(evt) {
+		uploader.pleaseWait();
+		$('#wait .bar').css('width', '0%');
+		$('#wait span').html('0%');
+	}
+
+	// Handle the progress
+	this.onprogressHandler = function(evt) {
+		var percent = evt.loaded/evt.total*100;
+		var val = Math.floor(percent) + '%';
+		$('#wait .bar').css('width', val);
+		$('#wait span').html(val);
+	}
+
+	// Handle the response from the server
+	this.onreadystatechangeHandler = function(evt) {
+		// hotfix for firefox 
+		if(window['file_rendered'] == true)
+			return;
+		var status = null;
+
+		try {
+			status = evt.target.status;
+		}
+		catch(e) {
+			return;
+		}
+		uploader.hideWait();
+		if (status == '200' && evt.target.responseText.length > 0) {
+			var ret = evt.target.responseText;
+			var json = $.parseJSON(ret);
+			var item = null;
+			for(var i = 0; i < json.html.length; i++)
 			{
-				item.before(json.html[i]);
-			}	
-			else
-			{
-				$("#items-list").append(json.html[i]);
+				item = $(".image-element").first();
+				if(item.length > 0)
+				{
+					item.before(json.html[i]);
+				}	
+				else
+				{
+					$("#items-list").append(json.html[i]);
+				}
 			}
+			var x = 0;
+			if(json.errors.length > 0 || json.warnings.length > 0)
+			{
+				uploader.showErrors(json.errors, json.warnings);
+			}
+			window['file_rendered'] = true;
 		}
-		var x = 0;
-		if(json.errors.length > 0 || json.warnings.length > 0)
-		{
-			show_errors(json.errors, json.warnings);
-		}
-		window['file_rendered'] = true;
 	}
 }
 

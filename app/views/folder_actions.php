@@ -34,7 +34,7 @@
 		<input type="hidden" value="add" name="action" />
 		<input type="hidden" value="<?php echo $this->back ?>" name="back" />
 		<input type="hidden" value="<?php echo $this->current_dir ?>" name="path" />
-		<input type="text"  name="new" id="new_folder" value="" />&nbsp;<input class="btn" type="submit" onclick="return validate_folder_name('new_folder');" value="<?php echo Ciap_Lang::t('save'); ?>" />
+		<input type="text"  name="new" id="new_folder" value="" />&nbsp;<input class="btn" type="submit" onclick="return uploader.validateFolderName('new_folder');" value="<?php echo Ciap_Lang::t('save'); ?>" />
 	</form>
 	<div style="clear: both;">&nbsp;</div>
 <?php endif; ?>
@@ -45,7 +45,7 @@
 		<input type="hidden" value="<?php echo $this->back ?>" name="back" />
 		<input type="hidden" value="<?php echo $this->current_dir ?>" name="path" />
 		<input type="hidden" value="<?php echo $this->dir ?>" name="current" />
-		<input type="text" name='new' id="folder_rename" value="<?php echo $this->dir; ?>" />&nbsp;<input class="btn" type="submit" onclick="return validate_folder_name('folder_rename');" value="<?php echo Ciap_Lang::t('save'); ?>" />
+		<input type="text" name='new' id="folder_rename" value="<?php echo $this->dir; ?>" />&nbsp;<input class="btn" type="submit" onclick="return uploader.validateFolderName('folder_rename');" value="<?php echo Ciap_Lang::t('save'); ?>" />
 		<p class="text-warning"><?php echo Ciap_Lang::t('rename_dir_warning'); ?></p>
 	</form>
 	<div style="clear: both;">&nbsp;</div>

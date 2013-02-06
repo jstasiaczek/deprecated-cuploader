@@ -82,7 +82,7 @@
 				longname : 'Ciap Uploader',
 				author : 'Jarosław Stasiaczek',
 				authorurl : 'http://phpweb.pl',
-				infourl : 'http://code.google.com/p/ciap-uploader/',
+				infourl : 'https://github.com/siidhighwind/cuploader',
 				version : "1.2"
 			};
 		}

@@ -17,19 +17,21 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 ?>
-							<form class="navbar-search pull-left"method="POST" enctype="multipart/form-data" action="<?php echo Ciap::$baseUrl.'/upload/?lang='.Ciap_Lang::getLang().'&back='.$this->current_dir?>&type=<?php echo Ciap_Reg::get('type'); ?>">
-								<div class="input-append">
-									<span style="display: none;">
-										<input type="file" name="file" id="single-upload-file" onchange="fakeInput.renderPath($(this), $('#fakeUploadInput'));"/>
-									</span>
+							<form target="_self" class="navbar-search pull-left" method="POST" enctype="multipart/form-data" action="<?php echo Ciap::$baseUrl.'/upload/?lang='.Ciap_Lang::getLang().'&back='.$this->current_dir?>&type=<?php echo Ciap_Reg::get('type'); ?>">
+							<div class="input-append" style="position: relative;">
+								<span class="transparent_inp">
+									<input type="file" name="file" id="single-upload-file" onchange="fakeInput.renderPath($(this), $('#fakeUploadInput'));"/>
+								</span>
+					
 									<input class="span2 uneditable-input" id="fakeUploadInput" disabled='disabled' id="appendedInputButton" type="text">
-									<button class="btn" onclick="$('#single-upload-file').focus().trigger('click');" type="button"><span class="icon-hdd"></span></button>
-									<button id="normal-upload-button" class="btn" type="submit"><span class="icon-upload"></span></button>
-									<button id="xhr-upload-button" class="btn" type="button" onclick="uploadFileXHR('&back=<?php echo $this->current_dir ?>')" style="display: none;"><span class="icon-upload"></span></button>
-									<a href="#" onclick="upload_many_dialog('<?php echo $this->current_dir ?>'); return false;" class="btn">...</a>
-									<script type="text/javascript">
-										var fakeInput = new CFakeFileInput();
-										initCorrectUploader(<?php $settings = Ciap_Reg::get('config'); if($settings['skip_xhr_upload']) echo 'true'; else echo 'false'; ?>);
-									</script>
-								</div>
+									<button class="btn" onclick="$('#single-upload-file').click();" type="button"><span class="icon-hdd"></span></button>
+									<button id="normal-upload-button" class="btn" onclick="$(this).parents('form').submit();" type="submit"><span class="icon-upload"></span></button>
+									<button id="xhr-upload-button" class="btn" type="button" onclick="uploader.uploadFileXHR('&back=<?php echo $this->current_dir ?>')" style="display: none;"><span class="icon-upload"></span></button>
+									<a href="#" onclick="uploader.uploadManyDialog('<?php echo $this->current_dir ?>'); return false;" class="btn">...</a>
+							</div>
 							</form>
+							<script type="text/javascript">
+								var fakeInput = new CFakeFileInput();
+								uploader.initCorrectUploader(<?php $settings = Ciap_Reg::get('config'); if($settings['skip_xhr_upload']) echo 'true'; else echo 'false'; ?>);
+							</script>
+								

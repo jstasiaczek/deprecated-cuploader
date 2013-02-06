@@ -49,6 +49,7 @@ Ciap::importClasses(Array(
 	'Action_Upload',
 	'Action_UploadXHR',
 	'Action_About',
+	'Version',
 ));
 
 

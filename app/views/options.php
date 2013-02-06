@@ -30,7 +30,7 @@
 			<?php echo $this->file_size ?><br />
 			<?php if(Config_Secure::can_delete_file()): ?>
 			<hr />
-			<button type="button" onclick="return delete_image('<?php echo Ciap_Lang::t('confirm_delete'); ?>');" class="btn btn-danger btn-mini">Delete</button>
+			<button type="button" onclick="return uploader.deleteImage('<?php echo Ciap_Lang::t('confirm_delete'); ?>');" class="btn btn-danger btn-mini">Delete</button>
 			<?php endif; ?>
 		</div>
 		<div class="span410px" style="height: 270px; overflow-y: auto;">
@@ -46,7 +46,7 @@
 					foreach ($this->thumb_sizes as $thumb_id => $thumb):
 						?>
 						<li>
-							<a href="#" onclick="createThumb('<?php echo $this->path ?>', <?php echo $thumb_id ?>, '<?php echo $this->filename ?>');return false;">
+							<a href="#" onclick="uploader.createThumb('<?php echo $this->path ?>', <?php echo $thumb_id ?>, '<?php echo $this->filename ?>');return false;">
 							<?php echo $thumb['name'][Ciap_Lang::getLang()]; ?>
 							</a>
 						</li>

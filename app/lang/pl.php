@@ -56,9 +56,9 @@ return Array(
 	'upload_info' => 'Informacje',
 	'empty' => 'brak pliku',
 	'about_text' => '<strong>Witaj we wtyczce CiapUploader.</strong><br />
-	Używasz wersji: 2.0<br />
-	Data wydania: 01/30/2013<br />
-	Strona projektu: http://code.google.com/p/ciap-uploader/<br />
+	Używasz wersji: '.Version::CURRENT.'<br />
+	Data wydania: '.date('m/d/Y', strtotime(Version::RELEASE_DATE)).'<br />
+	Strona projektu: https://github.com/siidhighwind/cuploader<br />
 	<br />
 	Stworzone przez: Jarosław Stasiaczek<br />
 	Strona autora: http://phpweb.p<br />',
