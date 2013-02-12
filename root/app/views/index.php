@@ -21,14 +21,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" href="<?php echo Ciap::$baseUrlNoFile; ?>css/uploader.css" />
-		<link rel="stylesheet" href="<?php echo Ciap::$baseUrlNoFile; ?>css/bootstrap.min.css" />
+		<link rel="stylesheet" href="<?php echo Ciap::$baseUrlNoFile; ?>public/css/uploader.css" />
+		<link rel="stylesheet" href="<?php echo Ciap::$baseUrlNoFile; ?>public/css/bootstrap.min.css" />
 		<!--[if IE]>
 			<link rel="stylesheet" type="text/css" href="<?php echo Ciap::$baseUrlNoFile; ?>css/uploader-ie.css" />
 		<![endif]-->
-		<script type="text/javascript" src="<?php echo Ciap::$baseUrlNoFile; ?>/js/jquery.js"></script>
-		<script type="text/javascript" src="<?php echo Ciap::$baseUrlNoFile; ?>/js/uploader.js"></script>
-		<script type="text/javascript" src="<?php echo Ciap::$baseUrlNoFile; ?>/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<?php echo Ciap::$baseUrlNoFile; ?>/public/js/jquery.js"></script>
+		<script type="text/javascript" src="<?php echo Ciap::$baseUrlNoFile; ?>/public/js/uploader.js"></script>
+		<script type="text/javascript" src="<?php echo Ciap::$baseUrlNoFile; ?>/public/js/bootstrap.min.js"></script>
         <title></title>
 		<script type="text/javascript">
 			urls.createThumb = '<?php echo Ciap_Url::create('createthumb')->buildUrl();?>';

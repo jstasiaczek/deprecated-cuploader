@@ -28,7 +28,7 @@ var CUploaderDialog = {
 			};
 		}
 		var val = tinyMCEPopup.editor.getParam('language');
-		var iframeUrl = 'manage.php/index/?lang='+val;
+		var iframeUrl = 'root/manage.php/index/?lang='+val;
 		if(this.getViewType() != null)
 			iframeUrl += '&type='+this.getViewType();
 		if(this.getCurrentPath() != null)
