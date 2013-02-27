@@ -1,5 +1,5 @@
 <?php
-/*Copyright (C) 2012 Jarosław Stasiaczek
+/*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
  * and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -30,12 +30,14 @@
  * @property string $default_directory_view
  * @property bool $skip_xhr_upload
  * @property array $thumb_create
+ * @property string $target
+ * @property array $register_scripts
  */
 class Config implements ArrayAccess{
 	private $data = Array();
 	private static $instance = null;
 	
-	protected function __construct($config_file_name = null) {
+	protected function __construct($config_file_name = 'main.php') {
 		$dir = dirname(__FILE__).'/Config/';
 		$this->data = include $dir."default.php";
 		if(!empty($config_file_name) && file_exists($dir.$config_file_name))
@@ -50,7 +52,7 @@ class Config implements ArrayAccess{
 	 * @param string $class
 	 * @return Config
 	 */
-	public static function getInstance($config_file_name = null,$class = __CLASS__)
+	public static function getInstance($config_file_name = 'main.php',$class = __CLASS__)
 	{
 		if(!empty(self::$instance))
 			return self::$instance;

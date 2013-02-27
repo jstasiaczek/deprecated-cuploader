@@ -18,11 +18,10 @@
  */
 
 /**
- * Description of Target
+ * Base and Default target class that allow to display CUploader without Tinymce just as standalone page
  *
- * @author jstasiac
  */
-class Ciap_Target {
+class Ciap_Target implements Ciap_Interface_AutoloadInit{
 	protected static $instance = Array();
 	
 	protected function __construct() {
@@ -30,17 +29,49 @@ class Ciap_Target {
 	}
 	
 	/**
-	 * 
+	 * Create instance of 
 	 * @param string $class
 	 * @return Ciap_Target
 	 */
-	public static function getInstance($class = __CLASS__)
+	public static function getInstance($class = null)
 	{
+		if(empty($class) && isset($_REQUEST['target']))
+		{
+			$target = ucfirst(strtolower($_REQUEST['target']));
+			if(class_exists('Target_'.$target))
+			{
+				$class = 'Target_'.$target;
+				Ciap_Url::setTarget($target);
+			}
+			elseif('Ciap_Target' == 'Ciap_'.$target)
+			{
+				$class='Ciap_'.$target;
+				Ciap_Url::setTarget($target);
+			}
+		}
+		if(empty($class))
+			$class = Config::getInstance()->target;
+		
 		if(isset(self::$instance[$class]))
 			return self::$instance[$class];
 		
 		self::$instance[$class] = new $class();
 		return self::$instance[$class];
+	}
+	
+	public function registerScripts()
+	{
+		Ciap_Script::getInstance()->registerScript('target', '/public/js/target.default.js');
+	}
+	
+	public function canInsertImages()
+	{
+		return false;
+	}
+	
+	public static function moduleInit() {
+		$instance = self::getInstance();
+		$instance->registerScripts();
 	}
 	
 }

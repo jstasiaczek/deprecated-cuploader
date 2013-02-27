@@ -1,5 +1,5 @@
 <?php 
-/*Copyright (C) 2012 Jarosław Stasiaczek
+/*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
  * and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -21,14 +21,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" href="<?php echo Ciap::$baseUrlNoFile; ?>public/css/uploader.css" />
-		<link rel="stylesheet" href="<?php echo Ciap::$baseUrlNoFile; ?>public/css/bootstrap.min.css" />
-		<!--[if IE]>
-			<link rel="stylesheet" type="text/css" href="<?php echo Ciap::$baseUrlNoFile; ?>css/uploader-ie.css" />
-		<![endif]-->
-		<script type="text/javascript" src="<?php echo Ciap::$baseUrlNoFile; ?>/public/js/jquery.js"></script>
-		<script type="text/javascript" src="<?php echo Ciap::$baseUrlNoFile; ?>/public/js/uploader.js"></script>
-		<script type="text/javascript" src="<?php echo Ciap::$baseUrlNoFile; ?>/public/js/bootstrap.min.js"></script>
+		<?php echo Ciap_Script::getInstance()->renderHeader(); ?>
         <title></title>
 		<script type="text/javascript">
 			urls.createThumb = '<?php echo Ciap_Url::create('createthumb')->buildUrl();?>';
@@ -38,9 +31,10 @@
 			urls.getOptions = '<?php echo Ciap_Url::create('options')->buildUrl(); ?>';
 			urls.getFolderActions = '<?php echo Ciap_Url::create('folder_actions')->buildUrl(); ?>';
 			urls.getAbout = '<?php echo Ciap_Url::create('about')->buildUrl(); ?>';
-			parent.CUploaderDialog.setCurrentPath('<?php echo $this->current_dir ?>');
 			var uploader = new CUploader();
 			uploader.urls = urls;
+			var target = new CTarget();
+			target.setCurrentDirectory('<?php echo $this->current_dir ?>');
 		</script>
     </head>
     <body>

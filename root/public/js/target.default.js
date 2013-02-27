@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<?php 
-/*Copyright (C) 2012 Jarosław Stasiaczek
+/*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
  * and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -17,33 +15,23 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-?>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add image</title>
-    </head>
-    <body>
-		<?php if(isset($this->message) && $this->message == true): ?>
-		<div style="background-color: #ccff33; border: #00cc00 1px solid; padding: 5px;">
-			Dodano
-		</div>
-		<?php endif; ?>
+
+
+/**
+ * Target class for default target, jus empty.
+ */
+function CTarget(){
+	this.setCurrentDirectory = function(dir)
+	{
 		
-		<?php if(isset($this->message) && $this->message == false): ?>
-		<div style="background-color: #ff9999; border: #ff0033 1px solid; padding: 5px;">
-			Błąd
-		</div>
-		<?php endif; ?>
-		<form method="POST" enctype="multipart/form-data" action="<?php echo Ciap::$baseUrl.'/upload?lang='.Ciap_Lang::getLang().'&back='.$this->current_dir?>">
-			Plik<br />
-			<input type="file" name="image" /><br />
-			Opis<br />
-			<input type="text" name="name" /><br /><br />
-			<input type="submit" value="Dodaj" /><br />
-		</form>
-		<?php
-		// put your code here
-		?>
-    </body>
-</html>
+	};
+	this.setCurrentViewType = function(type)
+	{
+		
+	};
+	this.insert = function(url, width, height, attributes)
+	{
+		
+	};
+	
+}

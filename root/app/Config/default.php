@@ -1,5 +1,5 @@
 <?php
-/*Copyright (C) 2012 Jarosław Stasiaczek
+/*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
  * and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -25,6 +25,7 @@ return Array(
 	'thumb_dir' => '',
 	'thumb_url' => '',
 	'show_breadcrumb' => false,
+	'target' => 'Ciap_Target',
 	'show_tree' => true,
 	'show_dirs_in_filelist' => false,
 	// allowed image mimetypes
@@ -34,5 +35,17 @@ return Array(
 	'skip_xhr_upload' => false,
 	// browser always create 
 	'thumb_create' => Array(),
+	'register_scripts' => Array(
+		'link' => Array(
+			'cuploader' => Array('href'=>'public/css/uploader.css', 'rel' => 'stylesheet'),
+			'cuploader-ie' => Array('href' => 'public/js/uploader-ie.css', 'type' => 'text/javascript', '_condition_comment' => 'IE'),
+			'bootstrap' => Array('href'=>'public/css/bootstrap.min.css', 'rel' => 'stylesheet'),
+		),
+		'script' => Array(
+			'jquery' => Array('src' => 'public/js/jquery.js', 'type' => 'text/javascript'),
+			'cuploader' => Array('src' => 'public/js/uploader.js', 'type' => 'text/javascript'),
+			'bootstrap' => Array('src' => 'public/js/bootstrap.min.js', 'type' => 'text/javascript'),
+		),
+	)
 );
 ?>

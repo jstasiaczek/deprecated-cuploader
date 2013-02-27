@@ -1,4 +1,4 @@
-/*Copyright (C) 2012 Jarosław Stasiaczek
+/*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
  * and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -28,7 +28,7 @@ var CUploaderDialog = {
 			};
 		}
 		var val = tinyMCEPopup.editor.getParam('language');
-		var iframeUrl = 'root/manage.php/index/?lang='+val;
+		var iframeUrl = 'root/manage.php/index/?target=tinymce&lang='+val;
 		if(this.getViewType() != null)
 			iframeUrl += '&type='+this.getViewType();
 		if(this.getCurrentPath() != null)

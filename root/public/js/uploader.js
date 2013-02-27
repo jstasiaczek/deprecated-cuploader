@@ -1,4 +1,4 @@
-/*Copyright (C) 2012 Jarosław Stasiaczek
+/*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
  * and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -154,7 +154,9 @@ this.showErrors = function(errors, warnings)
 			success: function(data){
 				var json = $.parseJSON(data);
 				if(json.success)
-					parent.CUploaderDialog.insert(json.url, json.attributes[0],json.attributes[1], 'width: '+json.attributes[0]+'px; height: '+json.attributes[1]+'px;');
+				{
+					target.insert(json.url, json.attributes[0],json.attributes[1], 'width: '+json.attributes[0]+'px; height: '+json.attributes[1]+'px;');
+				}
 				else
 					alert(json.error);
 		}});

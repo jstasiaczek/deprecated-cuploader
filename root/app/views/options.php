@@ -1,5 +1,5 @@
 <?php 
-/*Copyright (C) 2012 Jarosław Stasiaczek
+/*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
  * and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -34,12 +34,13 @@
 			<?php endif; ?>
 		</div>
 		<div class="span410px" style="height: 270px; overflow-y: auto;">
+			<?php if(Ciap_Target::getInstance()->canInsertImages()): ?>
 			<ul class="nav nav-tabs nav-stacked">
 				<li>
-					<a href="#" onclick="parent.CUploaderDialog.insert('<?php echo $this->thumb ?>', <?php echo Ciap_Tools::getImageWithHeightAttributes($this->thumb_dir); ?>);return false;"><?php echo Ciap_Lang::t('insert_this'); ?></a>
+					<a href="#" onclick="target.insert('<?php echo $this->thumb ?>', <?php echo Ciap_Tools::getImageWithHeightAttributes($this->thumb_dir); ?>);return false;"><?php echo Ciap_Lang::t('insert_this'); ?></a>
 				</li>
 				<li>
-					<a href="#" onclick="parent.CUploaderDialog.insert('<?php echo $this->orginal ?>', <?php echo Ciap_Tools::getImageWithHeightAttributes($this->orginal_dir); ?>);return false;"><?php echo Ciap_Lang::t('insert_oryginal'); ?></a>
+					<a href="#" onclick="target.insert('<?php echo $this->orginal ?>', <?php echo Ciap_Tools::getImageWithHeightAttributes($this->orginal_dir); ?>);return false;"><?php echo Ciap_Lang::t('insert_oryginal'); ?></a>
 				</li>
 				<?php
 				if (!empty($this->thumb_sizes))
@@ -52,6 +53,9 @@
 						</li>
 				<?php endforeach; ?>
 			</ul>
+			<?php else: ?>
+			<strong><?php echo Ciap_Lang::t('can_no_insert_images'); ?></strong>
+			<?php endif; ?>
 		<form id="delete_form" action="<?php echo Ciap_Url::create('options') ?>" method="POST">
 			<input type="hidden" name="back" value="<?php echo $this->path ?>" />
 			<input type="hidden" name="file" value="<?php echo $this->filename ?>" />

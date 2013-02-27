@@ -3,8 +3,8 @@
 Ciap::init(
 		Array(
 			'base_app_dir' => ROOT_DIR.'/app/',
-			'view_directory' => ROOT_DIR.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR,
-			'lang_directory' => ROOT_DIR.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'lang'.DIRECTORY_SEPARATOR,
+			'view_directory' => ROOT_DIR.'/app/views/',
+			'lang_directory' => ROOT_DIR.'/app/lang/',
 			'entry_file_name' => ROOT_FILE,
 ));
 
@@ -15,12 +15,14 @@ Ciap::importClasses(Array(
 	'Config_Secure_Base',
 	'Config_Secure',
 	'Ciap_Interface_AutoloadInit',
+	'Ciap_Script',
 	'Ciap_View',
 	'Ciap_Lang',
 	'Ciap_Tools',
 	'Ciap_Image',
 	'Ciap_Url',
 	'Ciap_Target',
+	'Target_Tinymce',
 	'PhpUploadErrors',
 	'Action_Base',
 	'Action_Createthumb',

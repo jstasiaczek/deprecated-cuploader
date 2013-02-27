@@ -1,4 +1,3 @@
-<?php 
 /*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -16,11 +15,24 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-?>
-<div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	<h5 style="margin: 0px;"><?php echo Ciap_Lang::t('about_link'); ?></h5>
-</div>
-<div class="modal-body" style="text-align: left;">
-	<?php echo Ciap_Lang::t('about_text') ?>
-</div>
+
+/**
+ * Target class form TinyMCE editor
+ */
+function CTarget(){
+	this.setCurrentDirectory = function(dir)
+	{
+		parent.CUploaderDialog.setCurrentPath(dir);
+	};
+	
+	this.setCurrentViewType = function(type)
+	{
+		parent.CUploaderDialog.setViewType(type);
+	};
+	
+	this.insert = function(url, width, height, attributes)
+	{
+		parent.CUploaderDialog.insert(url,width,height, attributes);
+	};
+	
+}

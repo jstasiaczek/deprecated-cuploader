@@ -1,5 +1,5 @@
 <?php
-/*Copyright (C) 2012 Jarosław Stasiaczek
+/*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
  * and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -78,6 +78,7 @@ class Ciap_Url implements Ciap_Interface_AutoloadInit{
 	
 	protected static $type = null;
 	protected static $lang = null;
+	protected static $target = null;
 	
 	/**
 	 * 
@@ -91,6 +92,8 @@ class Ciap_Url implements Ciap_Interface_AutoloadInit{
 			$params['lang'] = self::$lang;
 		if(!isset($params['type']))
 			$params['type'] = self::$type;
+		if(!isset($params['target']))
+			$params['target'] = self::$target;
 		return new $class($resource_name, $params);
 	}
 
@@ -104,6 +107,10 @@ class Ciap_Url implements Ciap_Interface_AutoloadInit{
 	public static function setLang($lang)
 	{
 		self::$lang = $lang;
+	}
+	public static function setTarget($target)
+	{
+		self::$target = $target;
 	}
 }
 

@@ -1,5 +1,5 @@
 <?php
-/*Copyright (C) 2012 Jarosław Stasiaczek
+/*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
  * and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -55,6 +55,7 @@ return Array(
 	'uploading' => 'Wysyłanie',
 	'upload_info' => 'Informacje',
 	'empty' => 'brak pliku',
+	'can_no_insert_images' => 'Z powodu ograniczeń widoku, nie możesz wstawiać obrazków.',
 	'about_text' => '<strong>Witaj we wtyczce CiapUploader.</strong><br />
 	Używasz wersji: '.Version::CURRENT.'<br />
 	Data wydania: '.date('m/d/Y', strtotime(Version::RELEASE_DATE)).'<br />

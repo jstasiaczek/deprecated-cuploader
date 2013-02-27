@@ -1,5 +1,5 @@
 <?php
-/*Copyright (C) 2012 Jarosław Stasiaczek
+/*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
  * and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -54,6 +54,7 @@ return Array(
 	'uploading' => 'Uploading',
 	'upload_info' => 'Upload informations',
 	'empty' => 'no file', 
+	'can_no_insert_images' => 'Because of limitation of current view, you can\'t insert images.',
 	'about_link' => 'About',
 	'about_text' => '<strong>Welcome to CiapUploader plugin.</strong><br />
 	You are using version: '.Version::CURRENT.'<br />

@@ -1,13 +1,39 @@
 <?php
-/**
- * Description of Tinymce
+/*Copyright (C) 2013 Jarosław Stasiaczek
  *
- * @author jstasiac
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+ * and associated documentation files (the "Software"), to deal in the Software without restriction, 
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute, 
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is 
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE 
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+ * OTHER DEALINGS IN THE SOFTWARE.
  */
-class Tinymce extends Ciap_Target{
-	public static function getInstance($class = __CLASS__) {
+
+/**
+ * Target class used for TinyMCE
+ */
+class Target_Tinymce extends Ciap_Target{
+	
+	public static function getInstance($class = null) {
 		return parent::getInstance($class);
 	}
+	
+	public function canInsertImages() {
+		return true;
+	}
+	
+	public function registerScripts() {
+		Ciap_Script::getInstance()->registerScript('target', '/public/js/target.tinymce.js');
+	}
+	
 	
 	
 }
