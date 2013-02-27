@@ -18,24 +18,23 @@
  */
 
 /**
- * Target class used for TinyMCE
+ * Target for opening CUploader in popup window
+ *
  */
-class Target_Tinymce extends Ciap_Target{
+class Target_Popup extends Ciap_Target{
+	public function preInit() {
+		Ciap_Script::getInstance()->registerScript('target', '/public/js/target.popup.js');
+		if(isset($_REQUEST['target_id']))
+			Ciap_Url::setDefaultParam('target_id', $_REQUEST['target_id']);
+	}
 	
-	public static function getInstance($class = null) {
-		return parent::getInstance($class);
+	public function getJsParams() {
+		return json_encode(Array('target_id' => Ciap_Url::getDefaultParam('target_id')));
 	}
 	
 	public function canInsertImages() {
 		return true;
 	}
-	
-	public function preInit() {
-		Ciap_Script::getInstance()->registerScript('target', '/public/js/target.tinymce.js');
-	}
-	
-	
-	
 }
 
 ?>

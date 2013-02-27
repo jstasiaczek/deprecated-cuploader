@@ -59,7 +59,7 @@ class Ciap_Target implements Ciap_Interface_AutoloadInit{
 		return self::$instance[$class];
 	}
 	
-	public function registerScripts()
+	public function preInit()
 	{
 		Ciap_Script::getInstance()->registerScript('target', '/public/js/target.default.js');
 	}
@@ -69,9 +69,14 @@ class Ciap_Target implements Ciap_Interface_AutoloadInit{
 		return false;
 	}
 	
+	public function getJsParams()
+	{
+		return '{}';
+	}
+
 	public static function moduleInit() {
 		$instance = self::getInstance();
-		$instance->registerScripts();
+		$instance->preInit();
 	}
 	
 }

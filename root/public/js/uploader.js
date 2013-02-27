@@ -155,7 +155,7 @@ this.showErrors = function(errors, warnings)
 				var json = $.parseJSON(data);
 				if(json.success)
 				{
-					target.insert(json.url, json.attributes[0],json.attributes[1], 'width: '+json.attributes[0]+'px; height: '+json.attributes[1]+'px;');
+					targetObj.insert(json.url, json.attributes[0],json.attributes[1], 'width: '+json.attributes[0]+'px; height: '+json.attributes[1]+'px;');
 				}
 				else
 					alert(json.error);

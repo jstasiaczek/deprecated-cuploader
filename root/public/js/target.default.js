@@ -21,6 +21,7 @@
  * Target class for default target, jus empty.
  */
 function CTarget(){
+	this.params = {};
 	this.setCurrentDirectory = function(dir)
 	{
 		

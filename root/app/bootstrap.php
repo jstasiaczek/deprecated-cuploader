@@ -23,6 +23,7 @@ Ciap::importClasses(Array(
 	'Ciap_Url',
 	'Ciap_Target',
 	'Target_Tinymce',
+	'Target_Popup',
 	'PhpUploadErrors',
 	'Action_Base',
 	'Action_Createthumb',

@@ -20,6 +20,7 @@
  * Target class form TinyMCE editor
  */
 function CTarget(){
+	this.params = {};
 	this.setCurrentDirectory = function(dir)
 	{
 		parent.CUploaderDialog.setCurrentPath(dir);

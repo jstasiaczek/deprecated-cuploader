@@ -16,7 +16,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-class Ciap_Url implements Ciap_Interface_AutoloadInit{
+class Ciap_Url{
 	protected $baseUrl = null;
 	protected $resource_name = null;
 	protected $params = Array();
@@ -75,10 +75,7 @@ class Ciap_Url implements Ciap_Interface_AutoloadInit{
 	
 	
 	/******************************************************STATIC PART******************************************************/
-	
-	protected static $type = null;
-	protected static $lang = null;
-	protected static $target = null;
+	protected static $default = Array();
 	
 	/**
 	 * 
@@ -88,29 +85,36 @@ class Ciap_Url implements Ciap_Interface_AutoloadInit{
 	 */
 	public static function create($resource_name, array $params = Array(), $class = __CLASS__)
 	{
-		if(!isset($params['lang']))
-			$params['lang'] = self::$lang;
-		if(!isset($params['type']))
-			$params['type'] = self::$type;
-		if(!isset($params['target']))
-			$params['target'] = self::$target;
+		foreach(self::$default as $key=>$value)
+		{
+			if(isset($params[$key]))
+				continue;
+			$params[$key] = $value;
+		}
 		return new $class($resource_name, $params);
-	}
-
-	public static function moduleInit() {
 	}
 	
 	public static function setType($type)
 	{
-		self::$type = $type;
+		self::$default['type'] = $type;
 	}
 	public static function setLang($lang)
 	{
-		self::$lang = $lang;
+		self::$default['lang'] = $lang;
 	}
 	public static function setTarget($target)
 	{
-		self::$target = $target;
+		self::$default['target'] = $target;
+	}
+	public static function setDefaultParam($key, $value)
+	{
+		self::$default[$key] = $value;
+	}
+	public static function getDefaultParam($key, $default = null)
+	{
+		if(!isset(self::$default[$key]))
+			return $default;
+		return self::$default[$key];
 	}
 }
 

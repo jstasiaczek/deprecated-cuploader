@@ -1,4 +1,3 @@
-<?php
 /*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -17,25 +16,27 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+
 /**
- * Target class used for TinyMCE
+ * Target class for default target, jus empty.
  */
-class Target_Tinymce extends Ciap_Target{
-	
-	public static function getInstance($class = null) {
-		return parent::getInstance($class);
-	}
-	
-	public function canInsertImages() {
-		return true;
-	}
-	
-	public function preInit() {
-		Ciap_Script::getInstance()->registerScript('target', '/public/js/target.tinymce.js');
-	}
-	
-	
+function CTarget(){
+	this.params = {};
+	this.setCurrentDirectory = function(dir)
+	{
+		window.opener['cuploader_params_storage'].path = dir;
+	};
+	this.setCurrentViewType = function(type)
+	{
+		window.opener['cuploader_params_storage'].type = type;
+	};
+	this.insert = function(url, width, height, attributes)
+	{
+		window.opener.document.getElementById(this.params.target_id).src = url;
+		window.opener.document.getElementById(this.params.target_id).width = width;
+		window.opener.document.getElementById(this.params.target_id).height = height;
+		window.opener.document.getElementById(this.params.target_id+"_value").value = url;
+		window.close();
+	};
 	
 }
-
-?>

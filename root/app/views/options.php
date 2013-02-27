@@ -37,10 +37,10 @@
 			<?php if(Ciap_Target::getInstance()->canInsertImages()): ?>
 			<ul class="nav nav-tabs nav-stacked">
 				<li>
-					<a href="#" onclick="target.insert('<?php echo $this->thumb ?>', <?php echo Ciap_Tools::getImageWithHeightAttributes($this->thumb_dir); ?>);return false;"><?php echo Ciap_Lang::t('insert_this'); ?></a>
+					<a href="#" onclick="targetObj.insert('<?php echo $this->thumb ?>', <?php echo Ciap_Tools::getImageWithHeightAttributes($this->thumb_dir); ?>);return false;"><?php echo Ciap_Lang::t('insert_this'); ?></a>
 				</li>
 				<li>
-					<a href="#" onclick="target.insert('<?php echo $this->orginal ?>', <?php echo Ciap_Tools::getImageWithHeightAttributes($this->orginal_dir); ?>);return false;"><?php echo Ciap_Lang::t('insert_oryginal'); ?></a>
+					<a href="#" onclick="targetObj.insert('<?php echo $this->orginal ?>', <?php echo Ciap_Tools::getImageWithHeightAttributes($this->orginal_dir); ?>);return false;"><?php echo Ciap_Lang::t('insert_oryginal'); ?></a>
 				</li>
 				<?php
 				if (!empty($this->thumb_sizes))

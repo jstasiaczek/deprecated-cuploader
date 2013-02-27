@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript">
+			function insertImage(id){
+				if(window['cuploader_params_storage'] == null)
+					window['cuploader_params_storage'] = {path:'', type:'grid'};
+				window.open('root/manage.php/?lang=pl&target=popup&target_id='+id+'&path='+window['cuploader_params_storage'].path+'&type='+window['cuploader_params_storage'].type, '_blank', 'width=900,height=600,location=0,menubar=0,toolbar=0')
+			}
+		</script>
+	</head>
+	<body>
+		<img src="img/archive.png" id="image1" onclick="insertImage('image1');" /><br />
+		Url of image:<br />
+		<input type="text" id="image1_value" value="not selected yet!" style="width: 500px;" />
+		
+	</body>
+</html>

@@ -33,8 +33,9 @@
 			urls.getAbout = '<?php echo Ciap_Url::create('about')->buildUrl(); ?>';
 			var uploader = new CUploader();
 			uploader.urls = urls;
-			var target = new CTarget();
-			target.setCurrentDirectory('<?php echo $this->current_dir ?>');
+			var targetObj = new CTarget();
+			targetObj.params = $.parseJSON('<?php echo Ciap_Target::getInstance()->getJsParams(); ?>');
+			targetObj.setCurrentDirectory('<?php echo $this->current_dir ?>');
 		</script>
     </head>
     <body>
