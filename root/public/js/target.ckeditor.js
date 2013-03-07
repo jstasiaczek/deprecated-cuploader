@@ -1,4 +1,3 @@
-<?php
 /*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -18,11 +17,34 @@
  */
 
 /**
- * Informations about release date and current version.
+ * Target class form CKEditor editor
  */
-class Version {
-	const CURRENT = '3.0.0';
-	const RELEASE_DATE = '2013-02-06 00:00:00';
+function CTarget(){
+	this.params = {};
+	this.setCurrentDirectory = function(dir)
+	{
+		parent.CKEDITOR.currentInstance.config.cuploaderStorage.path = dir;
+	};
+	
+	this.setCurrentViewType = function(type)
+	{
+		parent.CKEDITOR.currentInstance.config.cuploaderStorage.type = type;
+	};
+	
+	this.insert = function(url, width, height, attributes)
+	{
+		var imgTag = '<img src="';
+		imgTag += url+'"';
+		if(width != null)
+			imgTag += ' width="'+width+'" ';
+		if(height != null)
+			imgTag += ' height="'+height+'" ';
+		if(attributes != null)
+			imgTag += ' style="'+attributes+'" ';
+		imgTag += ' />';
+		parent.CKEDITOR.currentInstance.insertHtml(imgTag);
+		$('#options').modal('hide');
+		parent.CKEDITOR.dialog.getCurrent().hide();
+	};
+	
 }
-
-?>

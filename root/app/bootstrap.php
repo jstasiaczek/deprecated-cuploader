@@ -23,7 +23,9 @@ Ciap::importClasses(Array(
 	'Ciap_Url',
 	'Ciap_Target',
 	'Target_Tinymce',
+	'Target_Ckeditor',
 	'Target_Popup',
+	'Ciap_Target_Autoloader', // this class should be loaded after all targets
 	'PhpUploadErrors',
 	'Action_Base',
 	'Action_Createthumb',
@@ -55,7 +57,7 @@ if(!Config_Secure::can_access())
 Ciap::registerRoutes(
 		Array(
 		'/[a-zA-Z0-9=\?&\.\+\-|_]*' => 'Action_Index',
-		'/index' => 'Action_Index',
+		'/index/[a-zA-Z0-9=\?&\.\+\-|_]*' => 'Action_Index',
 		'/about/[a-zA-Z0-9=\?&\.\+\-|_]*' => 'Action_About',
 		'/index/[a-zA-Z0-9=\?&\.\+\-|_]*' => 'Action_Index',
 		'/createthumb/[a-zA-Z0-9=\?&\.\+\-|_]*' => 'Action_Createthumb',

@@ -21,7 +21,7 @@ return Array(
 	'upload' => 'Upload file',
 	'upload_many' => 'Upload files',
 	'more' => 'more files...',
-	'home' => 'Home',
+	'home' => 'Main Directory',
 	'error_system' => "Can\'t upload file because of internal system error.",
 	'error_size' => "Can't upload, file is to big.",
 	'error_ok' => "File uploaded correct!",
@@ -29,7 +29,7 @@ return Array(
 	'error_unknown' => "File is incorrect or it is too big!",
 	'insert_this' => 'Insert this thumbnail',
 	'insert' => 'Insert thumbnail',
-	'insert_oryginal' => 'Insert oryginal size',
+	'insert_oryginal' => 'Insert original size',
 	'close' => 'close',
 	'add_file' => 'Add new file...',
 	'delete' => 'Delete',
@@ -55,6 +55,11 @@ return Array(
 	'upload_info' => 'Upload informations',
 	'empty' => 'no file', 
 	'can_no_insert_images' => 'Because of limitation of current view, you can\'t insert images.',
+	'select_files' => 'Select files',
+	'remove_files' => 'Remove selected',
+	'remove_many_message' => 'Do you want to remove #co# file(s)?',
+	
+	
 	'about_link' => 'About',
 	'about_text' => '<strong>Welcome to CiapUploader plugin.</strong><br />
 	You are using version: '.Version::CURRENT.'<br />

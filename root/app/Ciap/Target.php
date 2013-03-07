@@ -21,7 +21,7 @@
  * Base and Default target class that allow to display CUploader without Tinymce just as standalone page
  *
  */
-class Ciap_Target implements Ciap_Interface_AutoloadInit{
+class Ciap_Target{
 	protected static $instance = Array();
 	
 	protected function __construct() {
@@ -73,12 +73,6 @@ class Ciap_Target implements Ciap_Interface_AutoloadInit{
 	{
 		return '{}';
 	}
-
-	public static function moduleInit() {
-		$instance = self::getInstance();
-		$instance->preInit();
-	}
-	
 }
 
 ?>

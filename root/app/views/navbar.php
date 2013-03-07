@@ -9,7 +9,7 @@
 						<a class="brand" href="<?php echo Ciap_Url::create('index')->buildUrl() ?>">Cuploader</a>
 						<div class="nav-collapse collapse navbar-responsive-collapse">
 							<ul class="nav">
-								<li><a href="#" onclick="uploader.getFolderActions('<?php echo $this->current_dir; ?>'); return false;"><i class="icon-wrench"></i></a></li>
+								<li><span class="icon-bar"></span></li>
 								<li>
 									<span class="icon-bar"></span>
 								</li>

@@ -22,7 +22,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<?php echo Ciap_Script::getInstance()->renderHeader(); ?>
-        <title></title>
+        <title>CUploader<?php echo $this->titlePath ?></title>
 		<script type="text/javascript">
 			urls.createThumb = '<?php echo Ciap_Url::create('createthumb')->buildUrl();?>';
 			urls.uploadManyDialog = '<?php echo Ciap_Url::create('upload')->buildUrl(); ?>';
@@ -31,8 +31,10 @@
 			urls.getOptions = '<?php echo Ciap_Url::create('options')->buildUrl(); ?>';
 			urls.getFolderActions = '<?php echo Ciap_Url::create('folder_actions')->buildUrl(); ?>';
 			urls.getAbout = '<?php echo Ciap_Url::create('about')->buildUrl(); ?>';
+			urls.currentLocation = '<?php echo Ciap_Url::create('index', Array('path'=>$this->current_dir)) ?>';
 			var uploader = new CUploader();
 			uploader.urls = urls;
+			uploader.viewMode = '<?php echo $this->view_type; ?>';
 			var targetObj = new CTarget();
 			targetObj.params = $.parseJSON('<?php echo Ciap_Target::getInstance()->getJsParams(); ?>');
 			targetObj.setCurrentDirectory('<?php echo $this->current_dir ?>');
@@ -74,6 +76,7 @@
 			<?php echo $this->tree; ?>
 		</div>
 		<div style="float: left; width: 80%;">
+			<?php echo Ciap_View::getHtml('toolbar', Array('current_dir' => $this->current_dir)); ?>
 		<?php endif; ?>
 			<?php echo Ciap::render($this->view_type, Array('dir' => $this->dir, 'current_dir' => $this->current_dir)); ?>
 		<?php if(Config::getInstance()->show_tree && $this->showTree): ?>

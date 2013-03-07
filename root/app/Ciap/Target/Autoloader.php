@@ -18,11 +18,12 @@
  */
 
 /**
- * Informations about release date and current version.
+ * Initialize correct target class
  */
-class Version {
-	const CURRENT = '3.0.0';
-	const RELEASE_DATE = '2013-02-06 00:00:00';
+class Ciap_Target_Autoloader implements Ciap_Interface_AutoloadInit{
+	public static function moduleInit() {
+		Ciap_Target::getInstance()->preInit();
+	}	
 }
 
 ?>

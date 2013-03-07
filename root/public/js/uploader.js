@@ -16,6 +16,13 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
+
 function UrlsContainer(){
 	this.moreFiles = '';
 	this.getFolderActions = '';
@@ -24,11 +31,16 @@ function UrlsContainer(){
 	this.uploadManyDialog = '';
 	this.uploadFileXHR = '';
 	this.createThumb = '';
+	this.currentLocation = '';
 }
 var urls = new UrlsContainer();
 
 function CUploader(){
 	this.urls = null;
+	this.inSelectMode = false;
+	this.selectedFiles = [];
+	this.viewMode = '';
+	
 	this.moreFiles = function(path,sender){
 		window['current_upload_many_iter'] += 1;
 		$.ajax({
@@ -37,6 +49,46 @@ function CUploader(){
 		  }).done(function( msg ) {
 			$(sender).parent().before(msg);
 		  });
+	};
+	
+	this.toggleSelectMode = function(obj){
+		obj = $(obj);
+		this.selectedFiles = [];
+		if(obj.hasClass('selectModeOn'))
+		{
+			obj.removeClass('selectModeOn');
+			$('.image-element').removeClass('selectedFile');
+			$('#deleteManyButton').css('display', 'none');
+			this.inSelectMode = false;
+			
+		}
+		else
+		{
+			obj.addClass('selectModeOn');
+			this.inSelectMode = true;
+		}
+	};
+	
+	this.deleteManyImages = function(path, message)
+	{
+		message = message.replace("#co#", this.selectedFiles.length);
+		if(!confirm(message))
+			return;
+		var files = [];
+		for(var i=0;i < this.selectedFiles.length;i++)
+		{
+			var file = this.selectedFiles[i].substring(this.selectedFiles[i].lastIndexOf('/')+1, this.selectedFiles[i].length);
+			path = this.selectedFiles[i].substring(0, this.selectedFiles[i].lastIndexOf('/')+1);
+			files.push(file);
+		}
+		var data = {
+			action : 'delete',
+			back: path,
+			file: files
+		};
+		$.post(this.urls.getOptions, data, function(){
+			window.location.assign(uploader.urls.currentLocation);
+		});
 	};
 
 	this.uploadManyFiles = function()
@@ -58,14 +110,61 @@ function CUploader(){
 		});
 
 	}
+	
+	this.toggleFile = function(path, obj){
+		var selected = false;
+		if(this.viewMode == 'view_grid')
+			selected = this.toggleFileGrid(path, obj);
+		else
+			selected = this.toggleFileList(path, obj);
+		if(selected)
+			this.selectedFiles.push(path);
+		else
+		{
+			var pos = this.selectedFiles.indexOf(path);
+			if(pos >= 0)
+				this.selectedFiles.remove(pos);
+		}
+		if(this.selectedFiles.length > 0)
+			$('#deleteManyButton').css('display', 'block');
+		else
+			$('#deleteManyButton').css('display', 'none');
+	};
+	
+	this.toggleFileGrid = function(path, obj){
+		obj = $(obj);
+		if(obj.hasClass('selectedFile'))
+		{
+			obj.removeClass('selectedFile');
+			return false;
+		}
+		obj.addClass('selectedFile');
+		return true;
+	};
+	
+	this.toggleFileList = function(path, obj){
+		obj = $(obj).parents('tr');
+		if(obj.hasClass('selectedFile'))
+		{
+			obj.removeClass('selectedFile');
+			return false;
+		}
+		obj.addClass('selectedFile');
+		return true;
+	};
 
-this.getOptions = function(path){
-	var file = path.substring(path.lastIndexOf('/')+1, path.length);
-	path = path.substring(0, path.lastIndexOf('/')+1);
-	$.post(urls.getOptions, {'file': file, 'path':path}, function(data){
-		$('#options').html(data).modal('show');
-	});
-	}
+	this.getOptions = function(path, obj){
+		if(this.inSelectMode)
+		{
+			this.toggleFile(path, obj);
+			return;
+		}
+		var file = path.substring(path.lastIndexOf('/')+1, path.length);
+		path = path.substring(0, path.lastIndexOf('/')+1);
+		$.post(urls.getOptions, {'file': file, 'path':path}, function(data){
+			$('#options').html(data).modal('show');
+		});
+	};
 	
 	this.uploadManyDialog = function(path)
 	{
@@ -75,10 +174,10 @@ this.getOptions = function(path){
 		  }).done(function( msg ) {
 			$('#upload_many_dlg').html(msg).modal('show');
 		  });
-	}
+	};
 
 
-this.showErrors = function(errors, warnings)
+	this.showErrors = function(errors, warnings)
 	{
 		var html = '';
 		if(errors != undefined)
@@ -91,7 +190,7 @@ this.showErrors = function(errors, warnings)
 		}
 		$('#errors .modal-body').html(html);
 		$('#errors').modal('show');
-	}
+	};
 
 	this.showErrorsRenderArray = function(data, cssclass)
 	{

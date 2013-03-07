@@ -32,7 +32,7 @@ class Action_Folder extends Action_Base{
 		
 		if(Action_Index::isPathSafe($path))
 		{
-			$can_do = $this->getCanDo($path, $can_do);
+			$can_do = self::getCanDo($path);
 		}
 		$arr = $this->clearEmpty(explode(Ciap_Reg::get('separator'), $path));
 		$dir = '';
@@ -82,7 +82,7 @@ class Action_Folder extends Action_Base{
 		Ciap::redirect(Ciap_Url::create('index')->buildUrl());
 	}
 	
-	protected function getCanDo($path, $can_do)
+	public function getCanDo($path)
 	{
 		// if it is main dir we can only create new dir
 		if($path == '' || $path == Ciap_Reg::get('separator'))

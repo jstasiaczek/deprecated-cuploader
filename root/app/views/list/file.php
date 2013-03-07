@@ -23,7 +23,7 @@
 			<img src="<?php echo Ciap_Image::extendImageName($this->element['thumb'], 25) ?>" />
 		</a>
 	</td>
-	<td class="name"><a href="#" onclick="uploader.getOptions('<?php echo $this->element['req'] ?>');return false;"><?php echo $this->element['name'] ?></a></td>
+	<td class="name"><a href="#" onclick="uploader.getOptions('<?php echo $this->element['req'] ?>', this);return false;"><?php echo $this->element['name'] ?></a></td>
 	<td class="number"><?php echo $this->element['sizes'][0] ?> <strong>x</strong> <?php echo $this->element['sizes'][1] ?> px</td>
 	<td class="number"><?php echo $this->element['size'] ?></td>
 </tr>

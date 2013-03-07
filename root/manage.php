@@ -25,7 +25,5 @@ define('ROOT_DIR', dirname(__FILE__));
 define('ROOT_FILE', basename(__FILE__));
 // bootstrap script
 require_once ROOT_DIR.'/app/bootstrap.php';
-if(file_exists(ROOT_DIR.'/app_extended/bootstrap.php'))
-	require_once ROOT_DIR.'/app_extended/bootstrap.php';
 Ciap::run();
 ?>

@@ -185,3 +185,14 @@ padding: 1px 1px;
 	height: 32px !important;
 }
 
+#filelist-toolbar{
+	border-bottom: none;
+	margin: 0px;
+}
+
+.selectModeOn, .selectedFile, .selectedFile td{
+	background-color: #9999ff !important;
+}
+.selectModeOn, .selectedFile td, .selectedFile td a{
+	color: white;
+}

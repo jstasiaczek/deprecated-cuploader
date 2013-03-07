@@ -28,7 +28,14 @@ var CUploaderDialog = {
 			};
 		}
 		var val = tinyMCEPopup.editor.getParam('language');
-		var iframeUrl = 'root/manage.php/index/?target=tinymce&lang='+val;
+		var iframeUrl = '';
+		
+		if(typeof tinyMCEPopup.editor.settings.cuploader_url === 'string')
+			iframeUrl += tinyMCEPopup.editor.settings.cuploader_url;
+		else
+			iframeUrl += 'root/';
+		
+		iframeUrl += 'manage.php/index/?target=tinymce&lang='+val;
 		if(this.getViewType() != null)
 			iframeUrl += '&type='+this.getViewType();
 		if(this.getCurrentPath() != null)

@@ -17,7 +17,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 ?>
-<div class="square square_img image-element thumbnail span1_75" title="<?php echo $this->element['name']; ?>" style="background-image: url(<?php echo $this->element['thumb'] ?>);" onclick="uploader.getOptions('<?php echo $this->element['req'] ?>');return false;">
+<div class="square square_img image-element thumbnail span1_75" title="<?php echo $this->element['name']; ?>" style="background-image: url(<?php echo $this->element['thumb'] ?>);" onclick="uploader.getOptions('<?php echo $this->element['req'] ?>', this);return false;">
 	<div style="width: 100%; height: 55px;">&nbsp;</div>
 	<span class="info <?php if(isset($this->class)) echo $this->class; ?>"><?php echo $this->element['size']; ?></span>
 </div>

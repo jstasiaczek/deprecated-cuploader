@@ -23,12 +23,18 @@ class Action_Index extends Action_Base{
 		$back_link = false;
 		$current_dir = '';
 		$add_path = '';
+		$titlePath = '';
 		if(isset($_GET['path']) && $this->isSafePath($_GET['path']))
 		{
 			$add_path = $_GET['path'];
 			$current_dir = $add_path;
 			$add_path = str_replace(Ciap_Reg::get('separator'), '/', $add_path);
 			$path = $this->config['image_upload_dir'].'/'.$add_path;
+			if(strlen($add_path) > 0)
+			{
+				$titlePath .= ' - ';
+				$titlePath .= ($add_path[0] == '/')? $add_path: '/'.$add_path;
+			}
 			$back_link = $this->getBackLink($add_path);
 		}
 		$types = $this->config['allowed_mime_types'];
@@ -51,6 +57,7 @@ class Action_Index extends Action_Base{
 			'errors' => $errors,
 			'tree' => $tree,
 			'showTree' => $showTree,
+			'titlePath' => $titlePath,
 				));
 	}
 	

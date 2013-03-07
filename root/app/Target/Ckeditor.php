@@ -18,11 +18,24 @@
  */
 
 /**
- * Informations about release date and current version.
+ * Target class used for CKEditor
  */
-class Version {
-	const CURRENT = '3.0.0';
-	const RELEASE_DATE = '2013-02-06 00:00:00';
+class Target_Ckeditor extends Ciap_Target{
+	
+	public static function getInstance($class = null) {
+		return parent::getInstance($class);
+	}
+	
+	public function canInsertImages() {
+		return true;
+	}
+	
+	public function preInit() {
+		Ciap_Script::getInstance()->registerScript('target', '/public/js/target.ckeditor.js');
+	}
+	
+	
+	
 }
 
 ?>

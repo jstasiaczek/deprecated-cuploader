@@ -21,7 +21,7 @@ return Array(
 	'upload' => 'Wgraj plik',
 	'upload_many' => 'Wgraj pliki',
 	'more' => 'więcej plików...',
-	'home' => 'Początek',
+	'home' => 'Katalog głowny',
 	'error_system' => "Plik nie może zostać wgrany z powodu błędu systemu.",
 	'error_size' => "Plik ma zbyt duży rozmiar.",
 	'error_ok' => "Plik wgrany poprawnie!",
@@ -56,6 +56,11 @@ return Array(
 	'upload_info' => 'Informacje',
 	'empty' => 'brak pliku',
 	'can_no_insert_images' => 'Z powodu ograniczeń widoku, nie możesz wstawiać obrazków.',
+	'select_files' => 'Zaznacz pliki',
+	'remove_files' => 'Usuń zaznaczonr',
+	'remove_many_message' => 'Czy chcesz usunąć #co# plik(ów)?',
+	
+	
 	'about_text' => '<strong>Witaj we wtyczce CiapUploader.</strong><br />
 	Używasz wersji: '.Version::CURRENT.'<br />
 	Data wydania: '.date('m/d/Y', strtotime(Version::RELEASE_DATE)).'<br />
