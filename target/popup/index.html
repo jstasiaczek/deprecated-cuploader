@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="cuploaderPopup.js"></script>
+		<script type="text/javascript">
+			var popup = new CUploaderPopup();
+			popup.init('../../', 'pl', 'grid');
+		</script>
+	</head>
+	<body>
+		<img src="archive.png" id="image1" onclick="popup.insertImage('image1');" /><br />
+		Url of image:<br />
+		<input type="text" id="image1_value" value="not selected yet!" style="width: 500px;" />
+		
+	</body>
+</html>

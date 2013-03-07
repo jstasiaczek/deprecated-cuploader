@@ -57,7 +57,7 @@ return Array(
 	'empty' => 'brak pliku',
 	'can_no_insert_images' => 'Z powodu ograniczeń widoku, nie możesz wstawiać obrazków.',
 	'select_files' => 'Zaznacz pliki',
-	'remove_files' => 'Usuń zaznaczonr',
+	'remove_files' => 'Usuń zaznaczone',
 	'remove_many_message' => 'Czy chcesz usunąć #co# plik(ów)?',
 	
 	
