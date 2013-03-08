@@ -19,11 +19,11 @@
 
 return Array(
 	// orginal size upload dir and url 
-	'image_upload_dir' => 'c:/wamp/www/_u/org/',
-	'image_upload_url' => '/_u/org/',
+	'image_upload_dir' => '',
+	'image_upload_url' => '',
 	// thumbnail dir
-	'thumb_dir' => 'c:/wamp/www/_u/thumbs/',
-	'thumb_url' => '/_u/thumbs/',
+	'thumb_dir' => '',
+	'thumb_url' => '',
 	// allowed image mimetypes
 	'allowed_mime_types' => Array('image/jpeg', 'image/pjpeg','image/png','image/gif', 'image/x-png'),
 	// default view of directory grid/list
