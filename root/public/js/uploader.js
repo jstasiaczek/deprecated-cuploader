@@ -91,11 +91,19 @@ function CUploader(){
 		});
 	};
 
-	this.uploadManyFiles = function()
+	this.uploadManyFiles = function(forceNormal, params)
 	{
-		$('#upload_many_dlg').modal('hide');
-		window.setTimeout('uploader.pleaseWait();', 50);
-		window.setTimeout('$(\'#upload_many_form\').submit();', 300);
+		if(this.initCorrectUploader(forceNormal, true))
+		{
+			$('#upload_many_dlg').modal('hide');
+			window.setTimeout('uploader.pleaseWait();', 50);
+			window.setTimeout('$(\'#upload_many_form\').submit();', 300);
+		}
+		else
+		{
+			this.uploadFileXHR(params, true);
+			$('#upload_many_dlg').modal('hide');
+		}
 	}
 
 	this.getFolderActions = function(path){
@@ -285,10 +293,12 @@ function CUploader(){
 	  }
 	}
 	
-	this.initCorrectUploader = function(forceNormal)
+	this.initCorrectUploader = function(forceNormal, returnonly)
 	{
+		returnonly = (returnonly)? returnonly: false;
 		if(forceNormal == undefined || forceNormal == null)
 			forceNormal = false;
+		return (!this.supportAjaxUploadWithProgress() || forceNormal);
 		if (!this.supportAjaxUploadWithProgress() || forceNormal) {
 			$('#normal-upload-button').css('display', 'inline');
 			$('#xhr-upload-button').css('display', 'none');
@@ -300,8 +310,9 @@ function CUploader(){
 		}
 	}
 
-	this.uploadFileXHR = function(params)
+	this.uploadFileXHR = function(params, multiupload)
 	{
+		multiupload = (multiupload)? multiupload: false;
 		window['upload_file_counter'] = 0;
 		var formData = new FormData();
 
@@ -309,9 +320,20 @@ function CUploader(){
 		var action = urls.uploadFileXHR+params;
 
 		// FormData only has the file
-		var fileInput = document.getElementById('single-upload-file');
-		var file = fileInput.files[0];
-		formData.append('single-upload-file', file);
+		if(!multiupload)
+		{
+			var fileInput = document.getElementById('single-upload-file');
+			var file = fileInput.files[0];
+			formData.append('single-upload-file', file);
+		}
+		else
+		{
+			var fileInputs = document.getElementsByClassName('multiupload-files');
+			for(var i = 0; i < fileInputs.length; i++)
+			{
+				formData.append('multiupload-file-'+i, fileInputs[i].files[0]);
+			}
+		}	
 
 		// Code common to both variants
 		this.sendXHRequest(formData, action);

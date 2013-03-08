@@ -76,8 +76,8 @@
 			<?php echo $this->tree; ?>
 		</div>
 		<div style="float: left; width: 80%;">
-			<?php echo Ciap_View::getHtml('toolbar', Array('current_dir' => $this->current_dir)); ?>
 		<?php endif; ?>
+			<?php echo Ciap_View::getHtml('toolbar', Array('current_dir' => $this->current_dir)); ?>
 			<?php echo Ciap::render($this->view_type, Array('dir' => $this->dir, 'current_dir' => $this->current_dir)); ?>
 		<?php if(Config::getInstance()->show_tree && $this->showTree): ?>
 		</div>

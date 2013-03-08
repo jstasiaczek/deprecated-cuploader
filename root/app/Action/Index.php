@@ -47,7 +47,7 @@ class Action_Index extends Action_Base{
 			$errors = Ciap_Reg::get('message_from_upload');
 		}
 		
-		list($tree, $showTree) = (Config::getInstance()->show_tree)? $this->getTree($current_dir): '';
+		list($tree, $showTree) = (Config::getInstance()->show_tree)? $this->getTree($current_dir): Array('','');
 		return Ciap::render('index', Array(
 			'dir'=> $dir, 
 			'back_link'=>$back_link, 

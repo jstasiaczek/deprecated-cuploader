@@ -17,7 +17,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 ?>
-<div onclick="window.location.href='<?php echo Ciap_Url::create('index', Array('path' => Ciap_Tools::createDirLink($this->current_dir,$this->element['name']))) ?>';" class="square thumbnail span1_75" style="cursor: pointer ;background-repeat: no-repeat; background-position: center; background-image: url(<?php echo Ciap::$baseUrlNoFile; ?>img/folder_open.png);">
+<div onclick="window.location.href='<?php echo Ciap_Url::create('index', Array('path' => Ciap_Tools::createDirLink($this->current_dir,$this->element['name']))) ?>';" class="square thumbnail span1_75" style="cursor: pointer ;background-repeat: no-repeat; background-position: center; background-image: url(<?php echo Ciap::$baseUrlNoFile; ?>public/img/folder_open.png);">
 	<div style="width: 100%; height: 54px;">&nbsp;</div>
 	<a  title="<?php echo $this->element['name'] ?>" href=""></a>
 		<?php echo Ciap_Tools::shortString($this->element['name'], 6) ?>

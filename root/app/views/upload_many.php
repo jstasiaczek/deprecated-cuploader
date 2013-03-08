@@ -35,7 +35,7 @@
 		</script>
 		<div class='form-inline span3' style="margin-bottom: 10px;">
 			<button class="btn" onclick="uploader.moreFiles('<?php echo $this->current_dir ?>', this)" type="button"><span class="icon-plus"></span></button>
-			<button class="btn" onclick="uploader.uploadManyFiles(); return false;" type="button"><span class="icon-upload"></span></button>
+			<button class="btn" onclick="uploader.uploadManyFiles(<?php $settings = Ciap_Reg::get('config'); if($settings['skip_xhr_upload']) echo 'true'; else echo 'false'; ?>, '&back=<?php echo $this->current_dir ?>'); return false;" type="button"><span class="icon-upload"></span></button>
 		</div>
 	</form>
 </div>

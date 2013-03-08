@@ -18,7 +18,7 @@
  */
 ?>
 <tr>
-	<td><img src="<?php echo Ciap::$baseUrlNoFile; ?>img/folder_open.png"/></td>
+	<td><img src="<?php echo Ciap::$baseUrlNoFile; ?>public/img/folder_open.png"/></td>
 	<td colspan="3"><a href="<?php echo Ciap_Url::create('index', Array('path' => Ciap_Tools::createDirLink($this->current_dir,$this->element['name']))) ?>">
 			<?php echo $this->element['name']; ?>
 		</a></td>
