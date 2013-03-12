@@ -272,7 +272,7 @@ function CUploader(){
 	// XHR upload part =========================================================================
 
 	this.supportAjaxUploadWithProgress = function() {
-	  return supportFileAPI() && supportAjaxUploadProgressEvents() && supportFormData();
+		return supportFileAPI() && supportAjaxUploadProgressEvents() && supportFormData();
 
 	  // Is the File API supported?
 	  function supportFileAPI() {
@@ -298,7 +298,8 @@ function CUploader(){
 		returnonly = (returnonly)? returnonly: false;
 		if(forceNormal == undefined || forceNormal == null)
 			forceNormal = false;
-		return (!this.supportAjaxUploadWithProgress() || forceNormal);
+		if(returnonly)
+			return (!this.supportAjaxUploadWithProgress() || forceNormal);
 		if (!this.supportAjaxUploadWithProgress() || forceNormal) {
 			$('#normal-upload-button').css('display', 'inline');
 			$('#xhr-upload-button').css('display', 'none');
