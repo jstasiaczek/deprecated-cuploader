@@ -13,6 +13,7 @@ Version 3.0.0 IN PROGRESS
 - Enh: switched to use Ciap_Script for all js and css files.
 - Enh: added new configuration key register_scripts where css and js files are stored.
 - Enh: Config class have now default parameter for $config_file_name = 'main.php'
+- Enh: multiupload is using xhr
 
 
 -----------------------------------

@@ -29,7 +29,7 @@ class Ciap_Target{
 	}
 	
 	/**
-	 * Create instance of 
+	 * Create instance of Ciap_Target
 	 * @param string $class
 	 * @return Ciap_Target
 	 */
@@ -59,16 +59,26 @@ class Ciap_Target{
 		return self::$instance[$class];
 	}
 	
+	/**
+	 * Init all needed data, used by class loader
+	 */
 	public function preInit()
 	{
 		Ciap_Script::getInstance()->registerScript('target', '/public/js/target.default.js');
 	}
 	
+	/**
+	 * Is possible to insert images by this target
+	 * @return boolean
+	 */
 	public function canInsertImages()
 	{
 		return false;
 	}
-	
+	/**
+	 * Return json array that is passed to target javascript class
+	 * @return string
+	 */
 	public function getJsParams()
 	{
 		return '{}';

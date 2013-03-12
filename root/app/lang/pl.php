@@ -67,7 +67,7 @@ return Array(
 	Strona projektu: https://github.com/siidhighwind/cuploader<br />
 	<br />
 	Stworzone przez: Jarosław Stasiaczek<br />
-	Strona autora: http://phpweb.p<br />',
+	Strona autora: http://phpweb.pl<br />',
 	'' => '',
 	'' => '',
 );

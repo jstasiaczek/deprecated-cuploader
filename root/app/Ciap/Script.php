@@ -26,7 +26,7 @@ class Ciap_Script implements Ciap_Interface_AutoloadInit{
 	protected $link = Array();
 	
 	/**
-	 * 
+	 * Return instance of Ciap_Script class
 	 * @param string $class
 	 * @return Ciap_Script
 	 */
@@ -45,6 +45,10 @@ class Ciap_Script implements Ciap_Interface_AutoloadInit{
 		$me->registerArray($scripts);
 	}
 	
+	/**
+	 * Reads array of scripts and add them to registry. Mostly used by bootstrap script.
+	 * @param array $scripts
+	 */
 	public function registerArray(array $scripts)
 	{
 		if(isset($scripts['link']))
@@ -55,12 +59,26 @@ class Ciap_Script implements Ciap_Interface_AutoloadInit{
 				$this->setArray ('script',$name, $data);
 	}
 	
+	/**
+	 * Reggister new script file url.
+	 * @param string $name
+	 * @param string $src
+	 * @param string $type
+	 * @param array $attributes
+	 */
 	public function registerScript($name, $src, $type='text/javascript',array $attributes = Array())
 	{
 		$params = array_merge($attributes, Array('src' => $src, 'type' => $type));
 		$this->setArray('script', $name, $params);
 	}
 	
+	/**
+	 * Register new link.
+	 * @param string $name
+	 * @param string $href
+	 * @param string $rel
+	 * @param array $attributes
+	 */
 	public function registerLink($name, $href, $rel ='stylesheet', array $attributes = Array())
 	{
 		$params = array_merge($attributes, Array('href' => $href, 'rel' => $rel));
@@ -72,7 +90,10 @@ class Ciap_Script implements Ciap_Interface_AutoloadInit{
 		$this->{$array_name}[$key] = $data;
 	}
 	
-	
+	/**
+	 * Render and return html for header.
+	 * @return string
+	 */
 	public function renderHeader()
 	{
 		$html = '';

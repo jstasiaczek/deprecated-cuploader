@@ -196,3 +196,7 @@ padding: 1px 1px;
 .selectModeOn, .selectedFile td, .selectedFile td a{
 	color: white;
 }
+
+.name{
+	word-break: break-all;
+}

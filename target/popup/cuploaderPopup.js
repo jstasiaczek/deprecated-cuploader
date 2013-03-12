@@ -15,7 +15,7 @@ function CUploaderPopup(){
 	this.insertImage = function(id){
 		if(window['cuploader_params_storage'] == null)
 			window['cuploader_params_storage'] = {path:'', type:this.type};
-		window.open(this.cuploaderUrl+'root/manage.php/?lang='+this.language+'&target=popup&target_id='+id+'&path='+window['cuploader_params_storage'].path+'&type='+window['cuploader_params_storage'].type, '_blank', 'width=900,height=600,location=0,menubar=0,toolbar=0')
+		window.open(this.cuploaderUrl+'manage.php/?lang='+this.language+'&target=popup&target_id='+id+'&path='+window['cuploader_params_storage'].path+'&type='+window['cuploader_params_storage'].type, '_blank', 'width=850,height=600,location=0,menubar=0,toolbar=0')
 	};
 }
 

@@ -151,25 +151,6 @@ class Action_Index extends Action_Base{
 			
 	}
 	
-	protected function scanDirAndCreateThumbs($add_path)
-	{
-		$path_small = $this->config['thumb_dir'].'/'.$add_path;
-		$path_big = $this->config['image_upload_dir'].'/'.$add_path;
-		if(!is_dir($path_small))
-			mkdir ($path_small, 0777, true);
-		foreach(Ciap_Tools::scanDir($path_big, $this->config['allowed_mime_types'], false) as $file)
-		{
-			$file = $file['name'];
-			
-			if(file_exists($path_small.'/'.$file))
-				continue;
-			
-			Ciap_Image::create($path_big.'/'.$file)->convert(Ciap_Image_Convert_ResizeAndCutToBox::init(), Array('edge' => '75'))
-				->save($path_small.'/'.$file);
-			
-		}
-	}
-	
 	protected function getBackLink($add_path)
 	{
 		$path = explode('/', $add_path);
@@ -200,7 +181,7 @@ class Action_Index extends Action_Base{
 	
 	public function post($request)
 	{
-		return Ciap::render('index', Array('who'=> 'me'));
+		
 	}
 	
 }
