@@ -19,7 +19,7 @@
 ?>
 <tr class="image-element <?php if(isset($this->class)) echo $this->class; ?>">
 	<td class="thumb">
-		<a href="#" onclick="uploader.getOptions('<?php echo $this->element['req'] ?>');return false;">
+		<a href="#" onclick="uploader.getOptions('<?php echo $this->element['req'] ?>', this);return false;">
 			<img src="<?php echo Ciap_Image::extendImageName($this->element['thumb'], 25) ?>" />
 		</a>
 	</td>

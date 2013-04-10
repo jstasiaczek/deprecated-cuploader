@@ -200,3 +200,7 @@ padding: 1px 1px;
 .name{
 	word-break: break-all;
 }
+
+.filelist .name{
+	word-wrap: break-word;
+}
