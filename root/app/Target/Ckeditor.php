@@ -31,7 +31,7 @@ class Target_Ckeditor extends Ciap_Target{
 	}
 	
 	public function preInit() {
-		Ciap_Script::getInstance()->registerScript('target', '/public/js/target.ckeditor.js');
+		Ciap_Script::getInstance()->registerScript('target', '/public/js/target/ckeditor.js');
 	}
 	
 	

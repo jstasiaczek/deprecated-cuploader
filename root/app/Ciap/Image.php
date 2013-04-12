@@ -137,9 +137,9 @@ class Ciap_Image {
 	 * @param string $extender
 	 * @return string
 	 */
-	public static function extendImageName($full_path, $extender)
+	public static function extendImageName($full_path, $extender, $delimiter= '.')
 	{
-		$pos =strrpos($full_path, '.');
+		$pos =strrpos($full_path, $delimiter);
 		if($pos !== false)
 		{
 			$ext = substr($full_path, $pos);

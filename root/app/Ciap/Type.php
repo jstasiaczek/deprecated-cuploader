@@ -16,73 +16,65 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-
-/**
- * Base and Default target class that allow to display CUploader without Tinymce just as standalone page
- *
- */
-class Ciap_Target{
+abstract class Ciap_Type {
 	protected static $instance = Array();
-	
-	protected function __construct() {
-		
-	}
-	
+	protected $mimieTypes = Array();
+	protected $config = Array();
+	protected $class = null;
 	/**
-	 * Create instance of Ciap_Target
+	 * 
 	 * @param string $class
-	 * @return Ciap_Target
+	 * @return Ciap_Type
 	 */
-	public static function getInstance($class = null)
+	public static function getInstance($class = __CLASS__)
 	{
-		if(empty($class) && isset($_REQUEST['target']))
-		{
-			$target = ucfirst(strtolower($_REQUEST['target']));
-			if(class_exists('Target_'.$target))
-			{
-				$class = 'Target_'.$target;
-				Ciap_Url::setTarget($target);
-			}
-			elseif('Ciap_Target' == 'Ciap_'.$target)
-			{
-				$class='Ciap_'.$target;
-				Ciap_Url::setTarget($target);
-			}
-		}
-		if(empty($class))
-			$class = Config::getInstance()->target;
-		
 		if(isset(self::$instance[$class]))
 			return self::$instance[$class];
-		
-		self::$instance[$class] = new $class();
+		self::$instance[$class] = new $class($class);
 		return self::$instance[$class];
 	}
 	
-	/**
-	 * Init all needed data, used by class loader
-	 */
-	public function preInit()
-	{
-		Ciap_Script::getInstance()->registerScript('target', '/public/js/target/default.js');
+	protected function __construct($class) {
+		$this->class = $class;
+		$this->config = Config::getInstance()->types[$class];
 	}
 	
 	/**
-	 * Is possible to insert images by this target
-	 * @return boolean
+	 * Trying to find suitable Ciap_Type class for given mime-type
+	 * @param string $mimeType
+	 * @param string $class
+	 * @return Ciap_Type|null
 	 */
-	public function canInsertImages()
+	public static function getInstanceByMimeType($mimeType, $class = __CLASS__)
 	{
-		return false;
+		$types = array_keys(Config::getInstance()->types);
+		foreach($types as $type)
+		{
+			$instance = self::getInstance($type);
+			if($instance->isAllowedMimeType($mimeType))
+				return $instance;
+		}
+		return null;
 	}
-	/**
-	 * Return json array that is passed to target javascript class
-	 * @return string
-	 */
-	public function getJsParams()
+	
+	public function getAllowedMimeTypes()
 	{
-		return '{}';
+		return $this->mimeTypes;
 	}
+	
+	public function isAllowedMimeType($mimeType)
+	{
+		return in_array($mimeType, $this->getAllowedMimeTypes());
+	}
+	
+	public function afterUpload(array $fileArray, $destinationPath){}
+	
+	public function beforeRender(){}
+	public function render(){}
+	public function renderOptions(){}
+	public function beforeRenderOptions(){}
+	public function insert(){}
+	
 }
 
 ?>

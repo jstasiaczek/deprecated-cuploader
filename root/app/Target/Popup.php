@@ -23,7 +23,7 @@
  */
 class Target_Popup extends Ciap_Target{
 	public function preInit() {
-		Ciap_Script::getInstance()->registerScript('target', '/public/js/target.popup.js');
+		Ciap_Script::getInstance()->registerScript('target', '/public/js/target/popup.js');
 		if(isset($_REQUEST['target_id']))
 			Ciap_Url::setDefaultParam('target_id', $_REQUEST['target_id']);
 	}

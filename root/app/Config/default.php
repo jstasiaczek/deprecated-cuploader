@@ -33,6 +33,10 @@ return Array(
 	// default view of directory grid/list
 	'default_directory_view' => 'list',
 	'skip_xhr_upload' => false,
+	// registred types
+	'types' => Array(
+		'Type_Image'=> Array(),
+	),
 	// browser always create 
 	'thumb_create' => Array(),
 	'register_scripts' => Array(

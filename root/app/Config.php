@@ -32,6 +32,7 @@
  * @property array $thumb_create
  * @property string $target
  * @property array $register_scripts
+ * @property array $types
  */
 class Config implements ArrayAccess{
 	private $data = Array();
