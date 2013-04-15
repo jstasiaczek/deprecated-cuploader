@@ -59,7 +59,7 @@ return Array(
 	'select_files' => 'Zaznacz pliki',
 	'remove_files' => 'Usuń zaznaczone',
 	'remove_many_message' => 'Czy chcesz usunąć #co# plik(ów)?',
-	
+	'info' => 'Informacje',
 	
 	'about_text' => '<strong>Witaj we wtyczce CiapUploader.</strong><br />
 	Używasz wersji: '.Version::CURRENT.'<br />

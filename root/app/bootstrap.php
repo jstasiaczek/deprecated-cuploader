@@ -25,6 +25,9 @@ Ciap::importClasses(Array(
 	'Target_Tinymce',
 	'Target_Ckeditor',
 	'Target_Popup',
+	'Ciap_Type',
+	'Ciap_Type_Manager',
+	'Type_Image',
 	'Ciap_Target_Autoloader', // this class should be loaded after all targets
 	'PhpUploadErrors',
 	'Action_Base',

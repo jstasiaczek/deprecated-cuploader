@@ -22,7 +22,7 @@
 		<tr>
 			<th style="width: 30px;"><?php echo Ciap_Lang::t('thumb_small'); ?></th>
 			<th><?php echo Ciap_Lang::t('name'); ?></th>
-			<th style="width: 100px;"><?php echo Ciap_Lang::t('dimensions'); ?></th>
+			<th style="width: 150px;"><?php echo Ciap_Lang::t('info'); ?></th>
 			<th style="width: 80px;"><?php echo Ciap_Lang::t('size'); ?></th>
 		</tr>
 	</thead>

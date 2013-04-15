@@ -25,5 +25,8 @@ define('ROOT_DIR', dirname(__FILE__));
 define('ROOT_FILE', basename(__FILE__));
 // bootstrap script
 require_once ROOT_DIR.'/app/bootstrap.php';
+
+//Ciap_Type_Manager::getInstance()->getTypeByFilename('c:/wamp/www/_u/org/besstudio-5.png'); exit();
+
 Ciap::run();
 ?>

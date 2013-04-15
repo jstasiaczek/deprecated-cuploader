@@ -11,7 +11,10 @@
  * @author jstasiac
  */
 class Type_Image extends Ciap_Type{
-	//put your code here
+	protected function __construct($class) {
+		parent::__construct($class);
+		$this->mimeTypes = Array('image/jpeg', 'image/pjpeg','image/png','image/gif', 'image/x-png');
+	}
 }
 
 ?>

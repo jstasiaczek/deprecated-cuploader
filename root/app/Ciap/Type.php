@@ -18,7 +18,7 @@
  */
 abstract class Ciap_Type {
 	protected static $instance = Array();
-	protected $mimieTypes = Array();
+	protected $mimeTypes = Array();
 	protected $config = Array();
 	protected $class = null;
 	/**
@@ -69,11 +69,10 @@ abstract class Ciap_Type {
 	
 	public function afterUpload(array $fileArray, $destinationPath){}
 	
-	public function beforeRender(){}
-	public function render(){}
-	public function renderOptions(){}
-	public function beforeRenderOptions(){}
+	public function prepareOptionsData(){}
 	public function insert(){}
+	public function prepareListData(){}
+	public function prepareGridData(){}
 	
 }
 
