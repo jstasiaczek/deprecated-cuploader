@@ -112,7 +112,7 @@ class Ciap_Tools{
 		$tree = Array();
 		foreach($data as $dir)
 		{
-			if(in_array($dir, Array('.', '..')))
+			if(in_array($dir, Array('.', '..', '___cache')))
 				continue;
 			if(!is_dir($base_dir.'/'.$dir))
 				continue;
@@ -134,7 +134,7 @@ class Ciap_Tools{
 	 * @param array $include_folders
 	 * @return array
 	 */
-	public static function scanDir($path, $allowed_types = Array(), $include_folders = true)
+	public static function scanDir($path, $additionalPath, $include_folders = true)
 	{
 		if(!is_dir($path))
 			return Array();
@@ -145,7 +145,7 @@ class Ciap_Tools{
 		{
 			if(in_array($file, Array('.','..')))
 				continue;
-			if(is_dir($path.DIRECTORY_SEPARATOR.$file))
+			if(is_dir($path.'/'.$file))
 			{
 				if(!$include_folders)
 					continue;
@@ -153,21 +153,26 @@ class Ciap_Tools{
 					continue;
 				$new_data_dir[] = Array(
 					'name' => $file,
-					'path' => $path.DIRECTORY_SEPARATOR.$file,
+					'path' => $path.'/'.$file,
 					'type' => 'dir'
 				);
 				continue;
 			}
 			
-			$file_type = Ciap_Image::getContentType($path.DIRECTORY_SEPARATOR.$file);
-			
-			if(empty($allowed_types) || !in_array($file_type, $allowed_types))
+			$file_type = Ciap_Image::getContentType($path.'/'.$file);
+			$handler = Ciap_Type_Manager::getInstance()->getTypeByMimetype($file_type);
+			if(empty($handler))
 				continue;
-			
+			// prepare correct data
+			if(Ciap_Reg::get('type') == 'list')
+				$renderData = $handler->prepareListData($path, $file, $additionalPath);
+			else
+				$renderData = $handler->prepareGridData($path, $file, $additionalPath);
 			$new_data[] = Array(
 				'name' => $file,
-				'path' => $path.DIRECTORY_SEPARATOR.$file,
-				'type' => 'file'
+				'path' => $path.'/'.$file,
+				'type' => 'file',
+				'data' => $renderData,
 			);
 			
 		}

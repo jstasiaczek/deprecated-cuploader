@@ -19,11 +19,11 @@
 ?>
 <tr class="image-element <?php if(isset($this->class)) echo $this->class; ?>">
 	<td class="thumb">
-		<a href="#" onclick="uploader.getOptions('<?php echo $this->element['req'] ?>', this);return false;">
-			<img src="<?php echo Ciap_Image::extendImageName($this->element['thumb'], 25) ?>" />
+		<a href="#" onclick="uploader.getOptions('<?php echo $this->element['data']['req'] ?>', this);return false;">
+			<img src="<?php echo $this->element['data']['thumb'] ?>" />
 		</a>
 	</td>
-	<td class="name"><a href="#" onclick="uploader.getOptions('<?php echo $this->element['req'] ?>', this);return false;"><?php echo $this->element['name'] ?></a></td>
-	<td class="number"><?php echo $this->element['sizes'][0] ?> <strong>x</strong> <?php echo $this->element['sizes'][1] ?> px</td>
-	<td class="number"><?php echo $this->element['size'] ?></td>
+	<td class="name"><a href="#" onclick="uploader.getOptions('<?php echo $this->element['data']['req'] ?>', this);return false;"><?php echo $this->element['data']['name'] ?></a></td>
+	<td class="number"><?php echo $this->element['data']['informations'] ?></td>
+	<td class="number"><?php echo $this->element['data']['size'] ?></td>
 </tr>

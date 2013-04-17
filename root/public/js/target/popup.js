@@ -30,12 +30,13 @@ function CTarget(){
 	{
 		window.opener['cuploader_params_storage'].type = type;
 	};
-	this.insert = function(url, width, height, attributes)
+	this.insert = function(html)
 	{
-		window.opener.document.getElementById(this.params.target_id).src = url;
-		window.opener.document.getElementById(this.params.target_id).width = width;
-		window.opener.document.getElementById(this.params.target_id).height = height;
-		window.opener.document.getElementById(this.params.target_id+"_value").value = url;
+//		window.opener.document.getElementById(this.params.target_id).src = url;
+//		window.opener.document.getElementById(this.params.target_id).width = width;
+//		window.opener.document.getElementById(this.params.target_id).height = height;
+//		window.opener.document.getElementById(this.params.target_id+"_value").value = url;
+		// @TODO: update drop arera!!!
 		window.close();
 	};
 	

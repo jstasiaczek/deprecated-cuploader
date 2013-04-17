@@ -19,7 +19,7 @@
 class Action_Index extends Action_Base{
 	public function get($request)
 	{
-		$path = $this->config['image_upload_dir'];
+		$normalImagePath = Config::getInstance()->image_upload_dir;
 		$back_link = false;
 		$current_dir = '';
 		$add_path = '';
@@ -29,7 +29,7 @@ class Action_Index extends Action_Base{
 			$add_path = $_GET['path'];
 			$current_dir = $add_path;
 			$add_path = str_replace(Ciap_Reg::get('separator'), '/', $add_path);
-			$path = $this->config['image_upload_dir'].'/'.$add_path;
+			$normalImagePath = $this->config['image_upload_dir'].'/'.$add_path;
 			if(strlen($add_path) > 0)
 			{
 				$titlePath .= ' - ';
@@ -37,9 +37,7 @@ class Action_Index extends Action_Base{
 			}
 			$back_link = $this->getBackLink($add_path);
 		}
-		$types = $this->config['allowed_mime_types'];
-		$dir = Ciap_Tools::scanDir($path, $types, Config::getInstance()->show_dirs_in_filelist);
-		$dir = $this->addThumbPath($dir, $add_path);
+		$dir = Ciap_Tools::scanDir($normalImagePath, $add_path, Config::getInstance()->show_dirs_in_filelist);
 
 		$errors = false;
 		if(Ciap_Reg::isRegistered('message_from_upload'))
@@ -47,7 +45,7 @@ class Action_Index extends Action_Base{
 			$errors = Ciap_Reg::get('message_from_upload');
 		}
 		
-		list($tree, $showTree) = (Config::getInstance()->show_tree)? $this->getTree($current_dir): Array('','');
+		list($htmlTree, $showTree) = (Config::getInstance()->show_tree)? $this->getTree($current_dir): Array('','');
 		return Ciap::render('index', Array(
 			'dir'=> $dir, 
 			'back_link'=>$back_link, 
@@ -55,12 +53,17 @@ class Action_Index extends Action_Base{
 			'navi' => (Config::getInstance()->show_breadcrumb)? $this->createNavi($current_dir) : '',
 			'view_type' => $this->getViewType(),
 			'errors' => $errors,
-			'tree' => $tree,
+			'tree' => $htmlTree,
 			'showTree' => $showTree,
 			'titlePath' => $titlePath,
-				));
+		));
 	}
 	
+	/**
+	 * Prapare and render tree, trturns html and array
+	 * @param string $current_dir
+	 * @return Array(string, bool)
+	 */
 	protected function getTree($current_dir)
 	{
 		$current_dir = $this->preparePath($current_dir);
@@ -98,6 +101,12 @@ class Action_Index extends Action_Base{
 		return $path;
 	}
 	
+	/**
+	 * Render directory tree
+	 * @param array $tree
+	 * @param string $current_dir
+	 * @return string
+	 */
 	protected function renderTree($tree, $current_dir = '')
 	{
 		$html = '';
@@ -123,6 +132,11 @@ class Action_Index extends Action_Base{
 		return $html;
 	}
 	
+	/**
+	 * Create breadcrumb navigation 
+	 * @param string $current_dir
+	 * @return string
+	 */
 	public function createNavi($current_dir)
 	{
 		$array = explode(Ciap_Reg::get('separator'), $current_dir);
@@ -151,6 +165,11 @@ class Action_Index extends Action_Base{
 			
 	}
 	
+	/**
+	 * Try to get path to parent dir
+	 * @param string $add_path
+	 * @return boolean|string
+	 */
 	protected function getBackLink($add_path)
 	{
 		$path = explode('/', $add_path);
@@ -169,11 +188,21 @@ class Action_Index extends Action_Base{
 		}
 	}
 	
+	/**
+	 * Check if path is safe and don't try to get out of base dir
+	 * @param string $path
+	 * @return bool
+	 */
 	protected function isSafePath($path)
 	{
 		return self::isPathSafe($path);
 	}
 	
+	/**
+	 * Check if path is safe and don't try to get out of base dir
+	 * @param string $path
+	 * @return bool
+	 */
 	public static function isPathSafe($path)
 	{
 		return preg_match('/^[|a-zA-Z0-9_]*$/i', $path);

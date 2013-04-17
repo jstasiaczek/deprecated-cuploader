@@ -67,12 +67,27 @@ abstract class Ciap_Type {
 		return in_array($mimeType, $this->getAllowedMimeTypes());
 	}
 	
-	public function afterUpload(array $fileArray, $destinationPath){}
+	public function afterUpload(array $fileArray, $destinationDir, $thumbnailDir){}
 	
-	public function prepareOptionsData(){}
+	public function prepareOptionsDialogInfo($path, $fileName, $additionalPath){
+		return Array();
+	}
+	public function renderOptions($path, $fileName, $additionalPath){}
 	public function insert(){}
-	public function prepareListData(){}
-	public function prepareGridData(){}
+	public function createAdditionalFile(){}
+	public function delete($path, $fileName, $additionalPath){}
+	public function prepareListData($path, $fileName, $additionalPath){
+		return Array(
+			'size' => Ciap_Tools::formatSize($path.'/'.$fileName),
+			'req' => $additionalPath.'/'.$fileName,
+		);
+	}
+	public function prepareGridData($path, $fileName, $additionalPath){
+		return Array(
+			'size' => Ciap_Tools::formatSize($path.'/'.$fileName),
+			'req' => $additionalPath.'/'.$fileName,
+		);
+	}
 	
 }
 

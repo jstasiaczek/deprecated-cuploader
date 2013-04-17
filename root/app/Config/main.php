@@ -19,80 +19,36 @@
 
 return Array(
 	// orginal size upload dir and url 
-	'image_upload_dir' => '',
-	'image_upload_url' => '',
+	'image_upload_dir' => 'c:/wamp/www/_u/org/',
+	'image_upload_url' => '/_u/org/',
 	// thumbnail dir
-	'thumb_dir' => '',
-	'thumb_url' => '',
-	// allowed image mimetypes
-	'allowed_mime_types' => Array('image/jpeg', 'image/pjpeg','image/png','image/gif', 'image/x-png'),
-	// default view of directory grid/list
-	'default_directory_view' => 'list',
-	'skip_xhr_upload' => false,
-	// browser always create 
-	'thumb_create' => Array(
-		// Convert configuration
-		Array(
-			// name displayed for user for each language
-			'name' => Array(
-				'en' => 'Insert thumbnail 500px',
-				'pl' => 'Wstaw miniaturkę 500px'
-			),
-			// name added to orginal filename after _
-			'output_file_name_postfix' => '500',
-			// what should we do to get this thumbnail
-			'chain' => Array(
-				Array(
-					// class name
-					'class' => 'Ciap_Image_Convert_ResizeToOneDimension',
-					// options
-					'options' => Array('width' => 500),
-				)
-			)
-		),
-		// Convert configuration
-		Array(
-			// name displayed for user for each language
-			'name' => Array(
-				'en' => 'Insert thumbnail 500px B&W',
-				'pl' => 'Wstaw miniaturkę 500px czarnobiała'
-			),
-			// name added to orginal filename after _
-			'output_file_name_postfix' => '500bw',
-			// what should we do to get this thumbnail
-			'chain' => Array(
-				Array(
-					// class name
-					'class' => 'Ciap_Image_Convert_ResizeToOneDimension',
-					// options
-					'options' => Array('width' => 500),
-				),
-				Array(
-					// class name
-					'class' => 'Ciap_Image_Convert_ChangeToBlackAndWhite',
-					// options
-					'options' => Array(),
-				)
-			)
-		),
-		Array(
-			// name displayed for user for each language
-			'name' => Array(
-				'en' => 'Insert thumbnail 200px',
-				'pl' => 'Wstaw miniaturkę 200px'
-			),
-			// name added to orginal filename after _
-			'output_file_name_postfix' => '200',
-			// what should we do to get this thumbnail
-			'chain' => Array(
-				Array(
-					// class name
-					'class' => 'Ciap_Image_Convert_ResizeToOneDimension',
-					// options
-					'options' => Array('width' => 200),
-				)
-			)
-		),
+	'thumb_dir' => 'c:/wamp/www/_u/thumbs/',
+	'thumb_url' => '/_u/thumbs/',
+	'types' => Array(
+		'Type_Image' => Array(
+			'thumb_create' => Array(
+						// Convert configuration
+						Array(
+							// name displayed for user for each language
+							'name' => Array(
+								'en' => 'Insert thumbnail 500px',
+								'pl' => 'Wstaw miniaturkę 500px'
+							),
+							// name added to orginal filename after _
+							'output_file_name_postfix' => '500',
+							// what should we do to get this thumbnail
+							'chain' => Array(
+								Array(
+									// class name
+									'class' => 'Ciap_Image_Convert_ResizeToOneDimension',
+									// options
+									'options' => Array('width' => 500),
+								)
+							)
+						),
+					),
+		)
 	),
-);
+	);
+
 ?>

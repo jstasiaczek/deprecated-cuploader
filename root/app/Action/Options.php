@@ -19,31 +19,25 @@
 class Action_Options extends Action_Base{
 	public function post($maches)
 	{
-		$file = '';
-		$path = '/';
+		$fileName = '';
+		$additionalPath = '/';
 		if(isset($_POST['file']))
-			$file = $_POST['file'];
+			$fileName = $_POST['file'];
 		if(isset($_POST['path']))
-			$path = $_POST['path'];
+			$additionalPath = $_POST['path'];
 		if(isset($_POST['action']) && $_POST['action'] == 'delete' && Config_Secure::can_delete_file())
 		{
 			$this->deleteFile();
 		}
-		
-		$thumb_size = ($this->config['thumb_create'])? $this->config['thumb_create'] : Array();
-		
-		return Ciap::render('options', Array( 
-							'orginal' => Ciap_Tools::fixImagePath($this->config['image_upload_url'].$path.$file), 
-							'orginal_dir' => $this->config['image_upload_dir'].$path.$file, 
-							'thumb' => Ciap_Tools::fixImagePath($this->config['thumb_url'].'/'.$path.$file), 
-							'thumb_dir' => $this->config['thumb_dir'].'/'.$path.$file, 
-							'thumb_path' => Ciap_Tools::fixImagePath($this->config['thumb_url'].$path.'/'),
-							'image_size' => getimagesize($this->config['image_upload_dir'].$path.$file),
-							'file_size' => Ciap_Tools::formatSize($this->config['image_upload_dir'].$path.$file),
-							'filename' => $file, 
-							'path'=> $path,
-							'back'=> str_replace('/', Ciap_Reg::get('separator'), $path),
-							'thumb_sizes' => $thumb_size,
+		$normalImagePath = $this->config['image_upload_dir'].$additionalPath.$fileName;
+		$data = Ciap_Type_Manager::getInstance()->getTypeByFilename($normalImagePath)
+								->prepareOptionsDialogInfo($this->config['image_upload_dir'].$additionalPath, $fileName, $additionalPath);
+				
+		return Ciap::render('options', Array(
+							'filename' => $fileName, 
+							'path'=> $additionalPath,
+							'normalPath' => $this->config['image_upload_dir'].$additionalPath,
+							'data'=> $data,
 							));
 	}
 	
@@ -58,6 +52,7 @@ class Action_Options extends Action_Base{
 		foreach($files as $file)
 		{
 			$this->deleteSingleFile($this->config['image_upload_dir'].$path.$file);
+			$this->deleteSingleFile($this->config['image_upload_dir'].$path.'/___cache/'.$file);
 			$this->deleteSingleFile($this->config['thumb_dir'].$path.$file);
 			$this->deleteSingleFile($this->config['thumb_dir'].$path.  Ciap_Image::extendImageName($file, '25'));
 
@@ -65,7 +60,7 @@ class Action_Options extends Action_Base{
 			{
 				foreach($this->config['thumb_create'] as $thumb)
 				{
-					$this->deleteSingleFile(  Ciap_Image::extendImageName($this->config['thumb_dir'].$path.$file, '_'.$thumb['output_file_name_postfix']));
+					$this->deleteSingleFile(Ciap_Image::extendImageName($this->config['thumb_dir'].$path.$file, '_'.$thumb['output_file_name_postfix']));
 				}
 			}
 		}

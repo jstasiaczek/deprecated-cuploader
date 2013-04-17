@@ -59,6 +59,9 @@ return Array(
 	'remove_files' => 'Remove selected',
 	'remove_many_message' => 'Do you want to remove #co# file(s)?',
 	'info' => 'Informations',
+	'additional_options' => 'Additional options',
+	'alternative_text' => 'Alternative text',
+	'title_text' => 'Title text',
 	
 	'about_link' => 'About',
 	'about_text' => '<strong>Welcome to CiapUploader plugin.</strong><br />

@@ -35,10 +35,11 @@ return Array(
 	'skip_xhr_upload' => false,
 	// registred types
 	'types' => Array(
-		'Type_Image'=> Array(),
+		'Type_Image'=> Array(
+			// thumbnail created by this type 
+			'thumb_create' => Array(),
+		),
 	),
-	// browser always create 
-	'thumb_create' => Array(),
 	'register_scripts' => Array(
 		'link' => Array(
 			'cuploader' => Array('href'=>'public/css/uploader.css', 'rel' => 'stylesheet'),

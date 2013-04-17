@@ -29,7 +29,6 @@
  * @property array $allowed_mime_types
  * @property string $default_directory_view
  * @property bool $skip_xhr_upload
- * @property array $thumb_create
  * @property string $target
  * @property array $register_scripts
  * @property array $types

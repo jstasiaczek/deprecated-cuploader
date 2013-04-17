@@ -31,9 +31,9 @@ function CTarget(){
 		parent.CUploaderDialog.setViewType(type);
 	};
 	
-	this.insert = function(url, width, height, attributes)
+	this.insert = function(html)
 	{
-		parent.CUploaderDialog.insert(url,width,height, attributes);
+		parent.CUploaderDialog.insert(html);
 	};
 	
 }

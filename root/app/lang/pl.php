@@ -60,6 +60,9 @@ return Array(
 	'remove_files' => 'Usuń zaznaczone',
 	'remove_many_message' => 'Czy chcesz usunąć #co# plik(ów)?',
 	'info' => 'Informacje',
+	'additional_options' => 'Opcje dodatkowe',
+	'alternative_text' => 'Tekst alternatywny',
+	'title_text' => 'Tytuł',
 	
 	'about_text' => '<strong>Witaj we wtyczce CiapUploader.</strong><br />
 	Używasz wersji: '.Version::CURRENT.'<br />

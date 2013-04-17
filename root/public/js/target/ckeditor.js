@@ -31,18 +31,9 @@ function CTarget(){
 		parent.CKEDITOR.currentInstance.config.cuploaderStorage.type = type;
 	};
 	
-	this.insert = function(url, width, height, attributes)
+	this.insert = function(html)
 	{
-		var imgTag = '<img src="';
-		imgTag += url+'"';
-		if(width != null)
-			imgTag += ' width="'+width+'" ';
-		if(height != null)
-			imgTag += ' height="'+height+'" ';
-		if(attributes != null)
-			imgTag += ' style="'+attributes+'" ';
-		imgTag += ' />';
-		parent.CKEDITOR.currentInstance.insertHtml(imgTag);
+		parent.CKEDITOR.currentInstance.insertHtml(html);
 		$('#options').modal('hide');
 		parent.CKEDITOR.dialog.getCurrent().hide();
 	};

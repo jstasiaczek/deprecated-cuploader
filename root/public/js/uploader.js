@@ -251,24 +251,6 @@ function CUploader(){
 		}
 	}
 
-	this.createThumb = function(path_add, id, imageName)
-	{
-		$.ajax({
-			url: this.urls.createThumb, 
-			async: false,
-			data: {'thumb_id': id, 'imageName':imageName, 'path_add': path_add}, 
-			type: 'POST',
-			success: function(data){
-				var json = $.parseJSON(data);
-				if(json.success)
-				{
-					targetObj.insert(json.url, json.attributes[0],json.attributes[1], 'width: '+json.attributes[0]+'px; height: '+json.attributes[1]+'px;');
-				}
-				else
-					alert(json.error);
-		}});
-	}
-
 	// XHR upload part =========================================================================
 
 	this.supportAjaxUploadWithProgress = function() {

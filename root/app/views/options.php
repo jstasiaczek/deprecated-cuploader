@@ -24,10 +24,10 @@
 <div class="modal-body" style="height: 300px;">
 	<div class="row">
 		<div class="span1_75n well well-small" style="height: 250px;">
-			<img src="<?php echo $this->thumb; ?>" />
+			<img src="<?php echo $this->data['thumb']; ?>" />
 			<hr />
-			<?php echo $this->image_size[0] ?><strong>x</strong><?php echo $this->image_size[1] ?> px<br />
-			<?php echo $this->file_size ?><br />
+			<?php echo $this->data['informations'] ?><br />
+			<?php echo $this->data['size'] ?><br />
 			<?php if(Config_Secure::can_delete_file()): ?>
 			<hr />
 			<button type="button" onclick="return uploader.deleteImage('<?php echo Ciap_Lang::t('confirm_delete'); ?>');" class="btn btn-danger btn-mini">Delete</button>
@@ -35,24 +35,7 @@
 		</div>
 		<div class="span410px" style="height: 270px; overflow-y: auto;">
 			<?php if(Ciap_Target::getInstance()->canInsertImages()): ?>
-			<ul class="nav nav-tabs nav-stacked">
-				<li>
-					<a href="#" onclick="targetObj.insert('<?php echo $this->thumb ?>', <?php echo Ciap_Tools::getImageWithHeightAttributes($this->thumb_dir); ?>);return false;"><?php echo Ciap_Lang::t('insert_this'); ?></a>
-				</li>
-				<li>
-					<a href="#" onclick="targetObj.insert('<?php echo $this->orginal ?>', <?php echo Ciap_Tools::getImageWithHeightAttributes($this->orginal_dir); ?>);return false;"><?php echo Ciap_Lang::t('insert_oryginal'); ?></a>
-				</li>
-				<?php
-				if (!empty($this->thumb_sizes))
-					foreach ($this->thumb_sizes as $thumb_id => $thumb):
-						?>
-						<li>
-							<a href="#" onclick="uploader.createThumb('<?php echo $this->path ?>', <?php echo $thumb_id ?>, '<?php echo $this->filename ?>');return false;">
-							<?php echo $thumb['name'][Ciap_Lang::getLang()]; ?>
-							</a>
-						</li>
-				<?php endforeach; ?>
-			</ul>
+			<?php echo Ciap_Type_Manager::getInstance()->getTypeByFilename($this->normalPath.'/'.$this->filename)->renderOptions($this->normalPath, $this->filename, $this->path); ?>
 			<?php else: ?>
 			<strong><?php echo Ciap_Lang::t('can_no_insert_images'); ?></strong>
 			<?php endif; ?>

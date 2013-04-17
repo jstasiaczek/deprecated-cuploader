@@ -44,15 +44,15 @@ class Action_Upload extends Action_Base{
 			$add_path = str_replace(Ciap_Reg::get('separator'), '/', $_GET['back']);
 		}
 		
-		$path_small = $this->config['thumb_dir'].'/'.$add_path;
-		$path_big = $this->config['image_upload_dir'].'/'.$add_path;
+		$thumbnailImagePath = $this->config['thumb_dir'].'/'.$add_path;
+		$normalImagePath = $this->config['image_upload_dir'].'/'.$add_path;
 		
-		if(!is_dir($path_small))
-			mkdir ($path_small, 0777, true);
+		if(!is_dir($thumbnailImagePath))
+			mkdir ($thumbnailImagePath, 0777, true);
 
 		if(!empty($_FILES))
 		{
-			list($warnings, $errors, $success) = $this->handleUploads($path_big, $path_small, $warnings, $errors, $success);
+			list($warnings, $errors, $success) = $this->handleUploads($normalImagePath, $thumbnailImagePath, $warnings, $errors, $success);
 		}
 		
 		if(empty($errors) && empty($warnings))
@@ -65,7 +65,7 @@ class Action_Upload extends Action_Base{
 		}
 	}
 	
-	protected function handleUploads($path_big, $path_small, $warnings, $errors, $success)
+	protected function handleUploads($normalImagePath, $thumbnailImagePath, $warnings, $errors, $success)
 	{
 		foreach($_FILES as $file)
 		{
@@ -74,26 +74,26 @@ class Action_Upload extends Action_Base{
 				$file['type'] = Ciap_Image::getContentType($file['tmp_name']);
 			}
 			$file['name'] = Ciap_Tools::safeFileName($file['name']);
-			if($file['error'] == 0 && in_array($file['type'], $this->config['allowed_mime_types']))
+			$typeHandler = Ciap_Type_Manager::getInstance()->getTypeByMimetype($file['type']);
+			if($file['error'] == 0 && !empty($typeHandler))
 			{
-				$new_name = $this->getCorrectName($path_big.'/', $file['name']);
+				$new_name = $this->getCorrectName($normalImagePath.'/', $file['name']);
 				if($new_name != $file['name'])
 				{
 					$warnings[$file['name']] = Ciap_Lang::t('file_exists_warning').$new_name;
 				}
 				$file['name'] = $new_name;
+				$file = $typeHandler->afterUpload($file, $normalImagePath, $thumbnailImagePath);
 				// mandatory thumbs
-				Ciap_Image::convertFileAndSave($file['tmp_name'], $path_small.'/'.$file['name'], Ciap_Image_Convert_ResizeAndCutToBox::init(), Array('edge' => 75));
-				Ciap_Image::convertFileAndSave($file['tmp_name'], $path_small.'/'.Ciap_Image::extendImageName($file['name'], '25'), Ciap_Image_Convert_ResizeAndCutToBox::init(), Array('edge' => 25));
-
-				move_uploaded_file($file['tmp_name'], $path_big.'/'.$file['name']);
-				$success[$file['name']] = Ciap_Tools::fixImagePath($path_big.'/'.$file['name']);
+				
+				move_uploaded_file($file['tmp_name'], $normalImagePath.'/'.$file['name']);
+				$success[$file['name']] = Ciap_Tools::fixImagePath($normalImagePath.'/'.$file['name']);
 			}
 			else
 			{
 				if(PhpUploadErrors::isError($file['error']))
 					$errors[$file['name']] = PhpUploadErrors::getMessage($file['error']);
-				elseif(PhpUploadErrors::UPLOAD_ERR_NO_FILE != $file['error'] && !in_array($file['type'], $this->config['allowed_mime_types']))
+				elseif(PhpUploadErrors::UPLOAD_ERR_NO_FILE != $file['error'] && empty($typeHandler))
 					$errors[$file['name']] = Ciap_Lang::t('error_type');
 			}
 		}

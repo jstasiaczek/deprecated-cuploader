@@ -79,22 +79,8 @@ var CUploaderDialog = {
 		tinyMCEPopup.editor.settings.cuploaderSettings.path = path;
 	},
 
-	insert : function(image, width, height, styles) {
-		// Insert the contents from the input into the document
-		if(width != null)
-			width = 'width="'+width+'"';
-		else
-			width = '';
-			
-		if(height != null)
-			height = 'height="'+height+'"';
-		else
-			height = '';
-		if(styles != null)
-			styles = 'style="'+styles+'"';
-		else
-			styles = '';
-		tinyMCEPopup.editor.execCommand('mceInsertContent', false, '<img '+width+' '+height+' '+styles+' src="'+image+'" />');
+	insert : function(html) {
+		tinyMCEPopup.editor.execCommand('mceInsertContent', false, html);
 		tinyMCEPopup.close();
 	}
 };
