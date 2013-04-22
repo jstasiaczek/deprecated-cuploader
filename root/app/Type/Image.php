@@ -66,6 +66,60 @@ class Type_Image extends Ciap_Type implements Ciap_Interface_AutoloadInit{
 		$data['relativePath'] = $additionalPath;
 		return Ciap_View::getHtml('type/image.options', $data);
 	}
+	
+	public function createAdditionalFile($path, $fileName, $additionalPath) {
+		$thumb_id = (int)$_POST['thumb_id'];
+		if(!isset($this->config['thumb_create'][$thumb_id]))
+			return json_encode (Array('error' => 'This thumb do not exisits!', 'success' => false, 'attributes' => ''));
+		
+		// init some paths and urls
+		$config = Config::getInstance();
+		$thumbnailPath = Ciap_Tools::fixImagePath($config->thumb_dir.'/'.$additionalPath);
+		$extendedFileName = Ciap_Image::extendImageName($fileName, '_'.$this->config['thumb_create'][$thumb_id]['output_file_name_postfix']);
+		$thumbnailImagePath = Ciap_Tools::fixImagePath($thumbnailPath.'/'.$extendedFileName);
+		$thumbnailImageUrl = Ciap_Tools::fixImagePath($config->thumb_url.$_POST['path_add'].$extendedFileName);
+		
+		
+		// check if file exists
+		if(file_exists($thumbnailImagePath))
+			return json_encode (Array('good' => 'File already exsist!', 'success' => true, 'url' => Ciap_Tools::fixImagePath ($thumbnailImageUrl), 'attributes' => explode(',',Ciap_Tools::getImageWithHeightAttributes($thumbnailImagePath, true))));
+		if(!file_exists($path))
+			return json_encode (Array('error' => 'No file to convert!', 'success' => false, 'attributes' => ''));
+		
+		// create thumbnail dir
+		if(!is_dir(dirname($thumbnailPath)))
+			mkdir(dirname($thumbnailPath), 0777, true);
+		
+		// create thumbnail 
+		try{
+			$image = Ciap_Image::create($path);
+			foreach($this->config['thumb_create'][$thumb_id]['chain'] as $part)
+			{
+				$image->convert($part['class'], $part['options']);
+			}
+			$image->save($thumbnailImagePath);
+		}catch(Exception $e)
+		{
+			
+		}
+		return json_encode (Array('good' => 'Converted!', 'success' => true, 'url' => Ciap_Tools::fixImagePath ($thumbnailImageUrl), 'attributes' => explode(',',Ciap_Tools::getImageWithHeightAttributes($thumbnailImagePath, true))));
+	}
+	
+	public function getFilesToDelete($path, $fileName, $additionalPath) {
+		$config = Config::getInstance();
+		$array = parent::getFilesToDelete($additionalPath, $fileName, $additionalPath);
+		$array[] =$config['thumb_dir'].$additionalPath.$fileName;
+		$array[] =$config['thumb_dir'].$additionalPath.  Ciap_Image::extendImageName($fileName, '25');
+
+		if(is_array($this->config['thumb_create']))
+		{
+			foreach($this->config['thumb_create'] as $thumb)
+			{
+				$array[] =Ciap_Image::extendImageName($config['thumb_dir'].$additionalPath.$fileName, '_'.$thumb['output_file_name_postfix']);
+			}
+		}
+		return $array;
+	}
 }
 
 ?>

@@ -57,31 +57,92 @@ abstract class Ciap_Type {
 		return null;
 	}
 	
+	
+	/**
+	 * Return array of allowed mimetypes
+	 * @return array
+	 */
 	public function getAllowedMimeTypes()
 	{
 		return $this->mimeTypes;
 	}
 	
+	/**
+	 * Check if mime type is allowed for this handler
+	 * @param string $mimeType
+	 * @return bool
+	 */
 	public function isAllowedMimeType($mimeType)
 	{
 		return in_array($mimeType, $this->getAllowedMimeTypes());
 	}
 	
-	public function afterUpload(array $fileArray, $destinationDir, $thumbnailDir){}
+	/**
+	 * Execute actions after file upload
+	 * @param array $fileArray
+	 * @param string $destinationDir
+	 * @param string $thumbnailDir
+	 */
+	abstract public function afterUpload(array $fileArray, $destinationDir, $thumbnailDir);
 	
+	/**
+	 * Prepare data array informations part of options dialog
+	 * @param string $path
+	 * @param string $fileName
+	 * @param string $additionalPath
+	 * @return array
+	 */
 	public function prepareOptionsDialogInfo($path, $fileName, $additionalPath){
 		return Array();
 	}
+	
+	/**
+	 * Renders and return options html part.
+	 * @param string $path
+	 * @param string $fileName
+	 * @param string $additionalPath
+	 */
 	public function renderOptions($path, $fileName, $additionalPath){}
-	public function insert(){}
-	public function createAdditionalFile(){}
-	public function delete($path, $fileName, $additionalPath){}
+	
+	public function insert($path, $fileName, $additionalPath){}
+	/**
+	 * This action is executed by ajax call and is used to create additional files before insert
+	 * @param string $path
+	 * @param string $filename
+	 * @param string $additionalPath
+	 * @return string encoded json object
+	 */
+	public function createAdditionalFile($path, $filename, $additionalPath){}
+	/**
+	 * Return array of files that should be deleted
+	 * @param string $path
+	 * @param string $fileName
+	 * @param string $additionalPath
+	 * @return array list of files to delete
+	 */
+	public function getFilesToDelete($path, $fileName, $additionalPath){
+		return Array();
+	}
+	/**
+	 * Prepare data for list view 
+	 * @param string $path
+	 * @param string $fileName
+	 * @param string $additionalPath
+	 * @return array
+	 */
 	public function prepareListData($path, $fileName, $additionalPath){
 		return Array(
 			'size' => Ciap_Tools::formatSize($path.'/'.$fileName),
 			'req' => $additionalPath.'/'.$fileName,
 		);
 	}
+	/**
+	 * Preprare data for grid view
+	 * @param string $path
+	 * @param string $fileName
+	 * @param string $additionalPath
+	 * @return array
+	 */
 	public function prepareGridData($path, $fileName, $additionalPath){
 		return Array(
 			'size' => Ciap_Tools::formatSize($path.'/'.$fileName),

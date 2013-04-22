@@ -32,11 +32,7 @@ function CTarget(){
 	};
 	this.insert = function(html)
 	{
-//		window.opener.document.getElementById(this.params.target_id).src = url;
-//		window.opener.document.getElementById(this.params.target_id).width = width;
-//		window.opener.document.getElementById(this.params.target_id).height = height;
-//		window.opener.document.getElementById(this.params.target_id+"_value").value = url;
-		// @TODO: update drop arera!!!
+		$(window.opener.document.getElementById(this.params.target_id)).html(html);
 		window.close();
 	};
 	

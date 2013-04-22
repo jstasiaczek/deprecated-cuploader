@@ -43,25 +43,22 @@ class Action_Options extends Action_Base{
 	
 	protected function deleteFile()
 	{
-		$path = '/'.$_POST['back'];
+		$additionalPath = '/'.$_POST['back'];
 		if(is_array($_POST['file']))
 			$files = $_POST['file'];
 		else
 			$files = Array($_POST['file']);
 		
-		foreach($files as $file)
+		foreach($files as $fileName)
 		{
-			$this->deleteSingleFile($this->config['image_upload_dir'].$path.$file);
-			$this->deleteSingleFile($this->config['image_upload_dir'].$path.'/___cache/'.$file);
-			$this->deleteSingleFile($this->config['thumb_dir'].$path.$file);
-			$this->deleteSingleFile($this->config['thumb_dir'].$path.  Ciap_Image::extendImageName($file, '25'));
-
-			if(is_array($this->config['thumb_create']))
+			$normalFilePath = $this->config['image_upload_dir'].$additionalPath.$fileName;
+			$metaCachedFile = $this->config['image_upload_dir'].$additionalPath.'/___cache/'.$fileName;
+			$typeHandler = Ciap_Type_Manager::getInstance()->getTypeByFilename($normalFilePath);
+			$filesToDelete = array_merge(Array($normalFilePath, $metaCachedFile), 
+											$typeHandler->getFilesToDelete($normalFilePath, $fileName, $additionalPath));
+			foreach($filesToDelete as $fileToDelete)
 			{
-				foreach($this->config['thumb_create'] as $thumb)
-				{
-					$this->deleteSingleFile(Ciap_Image::extendImageName($this->config['thumb_dir'].$path.$file, '_'.$thumb['output_file_name_postfix']));
-				}
+				$this->deleteSingleFile($fileToDelete);
 			}
 		}
 		Ciap::redirect(Ciap_Url::create('index', Array('path' => str_replace('/', Ciap_Reg::get('separator'), $_POST['back'])))->buildUrl());

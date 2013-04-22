@@ -27,7 +27,7 @@ function CTypeImage(){
 				var json = $.parseJSON(data);
 				if(json.success)
 				{
-					targetObj.insert(this.getHtml(json.url, json.attributes[0],json.attributes[1], 'width: '+json.attributes[0]+'px; height: '+json.attributes[1]+'px;'));
+					targetObj.insert(typeImage.getHtml(json.url, json.attributes[0],json.attributes[1], 'width: '+json.attributes[0]+'px; height: '+json.attributes[1]+'px;'));
 				}
 				else
 					alert(json.error);
