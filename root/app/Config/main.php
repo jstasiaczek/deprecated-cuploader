@@ -25,6 +25,7 @@ return Array(
 	'thumb_dir' => 'c:/wamp/www/_u/thumbs/',
 	'thumb_url' => '/_u/thumbs/',
 	'types' => Array(
+		'Type_Pdf' => array(),
 		'Type_Image' => Array(
 			'thumb_create' => Array(
 						// Convert configuration

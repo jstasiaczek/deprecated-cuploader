@@ -30,7 +30,7 @@ function CTarget(){
 	{
 		
 	};
-	this.insert = function(url, width, height, attributes)
+	this.insert = function(html)
 	{
 		
 	};

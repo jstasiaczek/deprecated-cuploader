@@ -62,6 +62,9 @@ return Array(
 	'additional_options' => 'Additional options',
 	'alternative_text' => 'Alternative text',
 	'title_text' => 'Title text',
+	'link_text' => 'Link text',
+	'in_new_window' => 'Open in new window',
+	'insert' => 'Insert',
 	
 	'about_link' => 'About',
 	'about_text' => '<strong>Welcome to CiapUploader plugin.</strong><br />

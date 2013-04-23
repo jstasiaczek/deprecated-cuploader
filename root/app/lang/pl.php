@@ -63,6 +63,9 @@ return Array(
 	'additional_options' => 'Opcje dodatkowe',
 	'alternative_text' => 'Tekst alternatywny',
 	'title_text' => 'Tytuł',
+	'link_text' => 'Tekst linku',
+	'in_new_window' => 'Otwórz w nowym oknie',
+	'insert' => 'Wstaw',
 	
 	'about_text' => '<strong>Witaj we wtyczce CiapUploader.</strong><br />
 	Używasz wersji: '.Version::CURRENT.'<br />

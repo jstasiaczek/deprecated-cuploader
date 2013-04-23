@@ -39,6 +39,7 @@ return Array(
 			// thumbnail created by this type 
 			'thumb_create' => Array(),
 		),
+		'Type_Pdf' => Array(),
 	),
 	'register_scripts' => Array(
 		'link' => Array(

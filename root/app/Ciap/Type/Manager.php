@@ -42,7 +42,7 @@ class Ciap_Type_Manager {
 		else
 		{
 			$mimeType = Ciap_Image::getContentType($path);
-			@mkdir($dirPath.'___cache/');
+			@mkdir(Ciap_Tools::fixImagePath($dirPath.'/___cache/'), 0777, true);
 			file_put_contents($cachedPath, $mimeType);
 		}
 		return $this->getTypeByMimetype($mimeType);
