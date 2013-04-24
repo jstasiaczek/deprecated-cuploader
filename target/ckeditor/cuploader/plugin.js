@@ -13,7 +13,7 @@ CKEDITOR.plugins.add('cuploader', {
 
 CKEDITOR.dialog.add( 'cuploader', function ( editor )
 {
-	console.log(editor);
+	CKEDITOR.currentInstance = editor;
 	return {
 		title : 'Cuploader',
 		minWidth : 820,
