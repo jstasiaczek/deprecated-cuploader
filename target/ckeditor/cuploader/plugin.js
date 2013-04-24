@@ -13,6 +13,7 @@ CKEDITOR.plugins.add('cuploader', {
 
 CKEDITOR.dialog.add( 'cuploader', function ( editor )
 {
+	console.log(editor);
 	return {
 		title : 'Cuploader',
 		minWidth : 820,
@@ -24,36 +25,36 @@ CKEDITOR.dialog.add( 'cuploader', function ( editor )
 			title:"",
 			expand:!0,
 			padding:0,
-			elements:[{type:"html",html:'<style>td.cke_dialog_contents_body{padding: 0px;}</style><iframe id="cuploader" style="width:820px;height:495px" src="'+prepareUrl()+'"></iframe>'}]
+			elements:[{type:"html",html:'<style>td.cke_dialog_contents_body{padding: 0px;}</style><iframe id="cuploader" style="width:820px;height:495px" src="'+prepareUrl(editor)+'"></iframe>'}]
 		}],
 		resizable: CKEDITOR.DIALOG_RESIZE_NONE,
 		buttons:[CKEDITOR.dialog.cancelButton]
 	};
 } );
 
-function prepareUrl(){
-	if(typeof CKEDITOR.currentInstance.config.cuploaderStorage === "undefined")
+function prepareUrl(editor){
+	if(typeof editor.config.cuploaderStorage === "undefined")
 	{
-		CKEDITOR.currentInstance.config.cuploaderStorage = {path: null, type:null};
+		editor.config.cuploaderStorage = {path: null, type:null};
 	}
 	var editor_url = '';
 	// determine correct cuploader path
-	if( typeof CKEDITOR.currentInstance.config.cuploader_url === 'string')
-		editor_url += CKEDITOR.currentInstance.config.cuploader_url;
+	if( typeof editor.config.cuploader_url === 'string')
+		editor_url += editor.config.cuploader_url;
 	else
 		editor_url += 'root/';
 	editor_url += 'manage.php/?target=ckeditor&lang=';
 	// determine language
-	if(parent.CKEDITOR.currentInstance.config.language !== "")
-		editor_url += CKEDITOR.currentInstance.config.language;
+	if(editor.config.language !== "")
+		editor_url += editor.config.language;
 	else
-		editor_url += CKEDITOR.currentInstance.config.defaultLanguage;
+		editor_url += editor.config.defaultLanguage;
 	// set current path
-	if(CKEDITOR.currentInstance.config.cuploaderStorage.path != null)
-		editor_url += '&path='+CKEDITOR.currentInstance.config.cuploaderStorage.path;
+	if(editor.config.cuploaderStorage.path != null)
+		editor_url += '&path='+editor.config.cuploaderStorage.path;
 	// set current view
-	if(CKEDITOR.currentInstance.config.cuploaderStorage.type != null)
-		editor_url += '&path='+CKEDITOR.currentInstance.config.cuploaderStorage.type;
+	if(editor.config.cuploaderStorage.type != null)
+		editor_url += '&path='+editor.config.cuploaderStorage.type;
 	return editor_url;
 }
 
