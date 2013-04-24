@@ -36,10 +36,13 @@ return Array(
 	// registred types
 	'types' => Array(
 		'Type_Image'=> Array(
-			// thumbnail created by this type 
-			'thumb_create' => Array(),
+			// thumbnail created by image type
+			'thumb_create' => Array(
+			),
 		),
 		'Type_Pdf' => Array(),
+		'Type_Text' => Array(),
+		'Type_Html' => Array(),
 	),
 	'register_scripts' => Array(
 		'link' => Array(

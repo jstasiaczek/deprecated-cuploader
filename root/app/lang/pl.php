@@ -66,6 +66,12 @@ return Array(
 	'link_text' => 'Tekst linku',
 	'in_new_window' => 'Otwórz w nowym oknie',
 	'insert' => 'Wstaw',
+	'insert_link' => 'Wstaw odnośnik',
+	'insert_content' => 'Wstaw zawartość',
+	'wrap_in' => 'Owiń w tag:',
+	'encoding_warning' => "<span class='label label-important'>Uwaga!</span> 
+		To narzędzie wstawia zawartosć pliku bez żadnej dodatkowej obróbki, 
+		jeżeli kodowanie znaków strony nie pasuje do kodowanie pliku pewne znaki mogą być wyświetlane niepoprawnie.",
 	
 	'about_text' => '<strong>Witaj we wtyczce CiapUploader.</strong><br />
 	Używasz wersji: '.Version::CURRENT.'<br />

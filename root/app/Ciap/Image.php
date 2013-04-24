@@ -125,6 +125,17 @@ class Ciap_Image {
 	 */
 	public static function getContentType($image_path)
 	{
+		// some files need to be egzamined by extension
+		$map = Array(
+				'html' => 'text/html',
+				'htm' => 'text/html',
+				'txt' => 'text/plain',
+				);
+		foreach($map as $ext=>$type)
+		{
+			if(strrpos($image_path, '.'.$ext))
+				return $type;
+		}
 		$finfo = finfo_open(FILEINFO_MIME_TYPE);
 		$mime_type = finfo_file($finfo, $image_path);
 		finfo_close($finfo);

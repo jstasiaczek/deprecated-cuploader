@@ -65,6 +65,11 @@ return Array(
 	'link_text' => 'Link text',
 	'in_new_window' => 'Open in new window',
 	'insert' => 'Insert',
+	'insert_link' => 'Insert link',
+	'insert_content' => 'Insert content',
+	'wrap_in' => 'Wrap in tag:',
+	'encoding_warning' => "<span class='label label-important'>Warning!</span> 
+		Be aware that this tool insert file as it is, if encoding of file not match site encoding it can break some special chars.",
 	
 	'about_link' => 'About',
 	'about_text' => '<strong>Welcome to CiapUploader plugin.</strong><br />

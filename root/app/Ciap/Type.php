@@ -19,7 +19,7 @@
 abstract class Ciap_Type {
 	protected static $instance = Array();
 	protected $mimeTypes = Array();
-	protected $config = Array();
+	public $config = Array();
 	protected $class = null;
 	/**
 	 * 
@@ -48,9 +48,12 @@ abstract class Ciap_Type {
 	public static function getInstanceByMimeType($mimeType, $class = __CLASS__)
 	{
 		$types = array_keys(Config::getInstance()->types);
+		$target = Ciap_Url::getDefaultParam('target');
 		foreach($types as $type)
 		{
 			$instance = self::getInstance($type);
+			if(isset($instance->config['omit_for_target']) && in_array($target, $instance->config['omit_for_target']))
+				continue;
 			if($instance->isAllowedMimeType($mimeType))
 				return $instance;
 		}

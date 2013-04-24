@@ -9,5 +9,15 @@ function CTypeFile(){
 		htmlTag += ' >'+$('#file-input-text').val()+'</a>';
 		return htmlTag;
 	};
+	this.getContent = function()
+	{
+		var val = $('#file-input-wrap').val();
+		var content = $('#file-content').val();
+		if(val != '0')
+		{
+			return "<"+val+">"+content+"</"+val+">";
+		}
+		return content;
+	}
 }
 var typeFile = new CTypeFile();

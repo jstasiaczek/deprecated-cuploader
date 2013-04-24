@@ -17,7 +17,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 ?>
-							<form target="_self" class="navbar-search pull-left" method="POST" enctype="multipart/form-data" action="<?php echo Ciap::$baseUrl.'/upload/?lang='.Ciap_Lang::getLang().'&back='.$this->current_dir?>&type=<?php echo Ciap_Reg::get('type'); ?>">
+<form target="_self" class="navbar-search pull-left" method="POST" enctype="multipart/form-data" action="<?php echo Ciap_Url::create('upload')->buildUrl(); ?>">
 							<div class="input-append" style="position: relative;">
 								<span class="transparent_inp">
 									<input type="file" name="file" id="single-upload-file" onchange="fakeInput.renderPath($(this), $('#fakeUploadInput'));"/>

@@ -29,6 +29,8 @@ Ciap::importClasses(Array(
 	'Ciap_Type_Manager',
 	'Type_Image',
 	'Type_Pdf',
+	'Type_Text',
+	'Type_Html',
 	'Ciap_Target_Autoloader', // this class should be loaded after all targets
 	'PhpUploadErrors',
 	'Action_Base',

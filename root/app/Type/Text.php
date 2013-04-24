@@ -16,14 +16,24 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-
-return Array(
-	// orginal size upload dir and url 
-	'image_upload_dir' => '',
-	'image_upload_url' => '',
-	// thumbnail dir
-	'thumb_dir' => '',
-	'thumb_url' => '',
-	);
+class Type_Text extends Type_Pdf{
+	
+	protected function __construct($class) {
+		parent::__construct($class);
+		$this->mimeTypes = Array('text/plain');
+		$this->icons = Array(
+				'25' => Ciap::$baseUrlNoFile.'public/img/text25.png',
+				'48' => Ciap::$baseUrlNoFile.'public/img/text48.png'
+		);
+	}
+	
+	
+	
+	public function renderOptions($path, $fileName, $additionalPath) {
+		$data = $this->getRenderOptions($path, $fileName, $additionalPath);
+		$data['content'] = nl2br(file_get_contents($path.$fileName));
+		return Ciap_View::getHtml('type/text.options', $data);
+	}
+}
 
 ?>

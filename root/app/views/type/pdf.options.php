@@ -11,6 +11,6 @@
 	<input id="file-input-url" type="hidden" value="<?php echo $this->fileUrl; ?>"/>
 	<hr style="clear: both; margin: 5px 0" />
 	<div style="text-align: right;">
-		<button type="button" onclick="targetObj.insert(typeFile.getHtml());" class="btn btn-success"><?php echo Ciap_Lang::t('insert') ?></button>
+		<button type="button" onclick="targetObj.insert(typeFile.getHtml());" class="btn btn-success"><?php echo Ciap_Lang::t('insert_link') ?></button>
 	</div>
 </div>
