@@ -30,7 +30,7 @@
 			<?php echo $this->data['size'] ?><br />
 			<?php if(Config_Secure::can_delete_file()): ?>
 			<hr />
-			<button type="button" onclick="return uploader.deleteImage('<?php echo Ciap_Lang::t('confirm_delete'); ?>');" class="btn btn-danger btn-mini">Delete</button>
+			<button type="button" onclick="return uploader.deleteImage('<?php echo Ciap_Lang::t('confirm_delete'); ?>');" class="btn btn-danger btn-mini"><?php echo Ciap_Lang::t('delete') ?></button>
 			<?php endif; ?>
 		</div>
 		<div class="span410px" style="height: 270px; overflow-y: auto;">

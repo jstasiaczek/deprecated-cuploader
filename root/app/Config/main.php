@@ -19,11 +19,11 @@
 
 return Array(
 	// orginal size upload dir and url 
-	'image_upload_dir' => '',
-	'image_upload_url' => '',
+	'image_upload_dir' => 'c:/wamp/www/_u/org/',
+	'image_upload_url' => '/_u/org/',
 	// thumbnail dir
-	'thumb_dir' => '',
-	'thumb_url' => '',
+	'thumb_dir' => 'c:/wamp/www/_u/thumbs/',
+	'thumb_url' => '/_u/thumbs/',
 	);
 
 ?>

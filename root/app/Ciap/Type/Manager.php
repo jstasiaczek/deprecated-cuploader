@@ -33,7 +33,7 @@ class Ciap_Type_Manager {
 	}
 	
 	/**
-	 * 
+	 * Check file type and return handler
 	 * @param string $path
 	 * @return Ciap_Type
 	 */
@@ -55,7 +55,7 @@ class Ciap_Type_Manager {
 	}
 	
 	/**
-	 * 
+	 * Get handler by mimetype
 	 * @param string $mimeType
 	 * @return Ciap_Type
 	 */

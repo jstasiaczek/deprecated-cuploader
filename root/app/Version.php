@@ -22,7 +22,7 @@
  */
 class Version {
 	const CURRENT = '3.0.0';
-	const RELEASE_DATE = '2013-02-06 00:00:00';
+	const RELEASE_DATE = '2013-06-07 00:00:00';
 }
 
 ?>
