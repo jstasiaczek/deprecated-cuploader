@@ -75,9 +75,14 @@ class Ciap_Tools{
 	
 	public static function fixImagePath($path)
 	{
-		$path = str_replace('///', '/', $path);
-		$path = str_replace('//', '/', $path);
-		return $path;
+		$pos = strpos($path, '://');
+		$prefix = '';
+		if($pos !== false){
+			$prefix = substr($path, 0, $pos+3);
+			$path = substr($path, $pos+3);
+		}
+		$path = str_replace(Array('/////','////','///', '//'), '/', $path);
+		return $prefix.$path;
 	}
 	
 	/**
