@@ -2,11 +2,11 @@ CUploader Changelog
 -----------------------------------
 
 -----------------------------------
-Version 3.0.0 IN PROGRESS
+Version 3.0.0 July 28, 2013
 -----------------------------------
 
-- New: added Ciap_Script class, simply is store style and javascript libraries, and render it.
-- New: added types, now script can handle more than images, html files, text files and pdfs
+- New: added Ciap_Script class, simply it store style and javascript libraries, and render it.
+- New: added types, now script can handle more than images: html files, text files and pdfs
 - New: added targets, you can now use CUploader outside tinymce, target can be passed by url param Target or by configuration key target
 - New: added CTraget javascript class  that provides target functions handliong like saving dir, view type and inserting images
 - Chg: all files connected to CUploader are now isolated from tinymce plugin stuff in root dir.
@@ -15,6 +15,7 @@ Version 3.0.0 IN PROGRESS
 - Enh: added new configuration key register_scripts where css and js files are stored.
 - Enh: Config class have now default parameter for $config_file_name = 'main.php'
 - Enh: multiupload is using xhr
+- Enh: allowed to use http or https in file locations urls
 
 
 -----------------------------------
