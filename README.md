@@ -17,10 +17,10 @@ Some features:
 * It provide simple directory managment.
 
 
-Installation
+Installation (under version 3.0.0)
 ------
 
-* Download latest tag.
+* Download latest tag for version 2.x
 * Put it in TinyMCE plugin directory, it should be named cuploader.
 * Add it to TinyMCE configuration:
 
@@ -45,3 +45,8 @@ and edit
 <TinyMCE root dir>/plugin/cuploader/app/Config/Base/Secure.php for more methods.
 
 For more informations please read wiki: https://github.com/siidhighwind/cuploader/wiki
+
+Installation (version 3.x)
+------
+
+Comming soon...
