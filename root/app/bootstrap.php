@@ -41,6 +41,7 @@ Ciap::importClasses(Array(
 	'Ciap_Url',
 	'Ciap_Target',
 	'Target_Tinymce',
+	'Target_Tinymce4',
 	'Target_Ckeditor',
 	'Target_Popup',
 	'Ciap_Type',

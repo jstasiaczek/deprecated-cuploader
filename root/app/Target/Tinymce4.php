@@ -18,11 +18,24 @@
  */
 
 /**
- * Informations about release date and current version.
+ * Target class used for TinyMCE
  */
-class Version {
-	const CURRENT = '3.1.0';
-	const RELEASE_DATE = '2013-09-12 23:00:00';
+class Target_Tinymce4 extends Ciap_Target{
+	
+	public static function getInstance($class = null) {
+		return parent::getInstance($class);
+	}
+	
+	public function canInsertImages() {
+		return true;
+	}
+	
+	public function preInit() {
+		Ciap_Script::getInstance()->registerScript('target', '/public/js/target/tinymce4.js');
+	}
+	
+	
+	
 }
 
 ?>

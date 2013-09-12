@@ -1,4 +1,3 @@
-<?php
 /*Copyright (C) 2013 Jarosław Stasiaczek
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -18,11 +17,24 @@
  */
 
 /**
- * Informations about release date and current version.
+ * Target class form TinyMCE editor
  */
-class Version {
-	const CURRENT = '3.1.0';
-	const RELEASE_DATE = '2013-09-12 23:00:00';
+function CTarget(){
+	this.params = {};
+	this.setCurrentDirectory = function(dir)
+	{
+		parent.tinymce.activeEditor.settings.cuploaderSettings.path = dir;
+	};
+	
+	this.setCurrentViewType = function(type)
+	{
+		parent.tinymce.activeEditor.settings.cuploaderSettings.type = type;
+	};
+	
+	this.insert = function(html)
+	{
+		parent.tinymce.activeEditor.insertContent(html);
+		parent.tinymce.activeEditor.windowManager.close();
+	};
+	
 }
-
-?>

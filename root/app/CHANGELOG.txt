@@ -2,6 +2,13 @@ CUploader Changelog
 -----------------------------------
 
 -----------------------------------
+Version 3.1.0 September 12, 2013
+-----------------------------------
+
+- New: added support for TinyMCE 4
+- Fix: displaying date in incorrect format for polish language
+
+-----------------------------------
 Version 3.0.0 July 28, 2013
 -----------------------------------
 

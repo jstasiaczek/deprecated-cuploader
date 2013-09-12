@@ -75,7 +75,7 @@ return Array(
 	
 	'about_text' => '<strong>Witaj we wtyczce CiapUploader.</strong><br />
 	Używasz wersji: '.Version::CURRENT.'<br />
-	Data wydania: '.date('m/d/Y', strtotime(Version::RELEASE_DATE)).'<br />
+	Data wydania: '.date('d.m.Y', strtotime(Version::RELEASE_DATE)).'<br />
 	Strona projektu: https://github.com/siidhighwind/cuploader<br />
 	<br />
 	Stworzone przez: Jarosław Stasiaczek<br />
