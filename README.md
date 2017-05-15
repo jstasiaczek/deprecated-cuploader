@@ -1,4 +1,4 @@
-CUploader
+!DEPRECATED! CUploader
 =========
 
 CUploader is standalone application that can be used with CKEditor, Tinymce or as popup.
